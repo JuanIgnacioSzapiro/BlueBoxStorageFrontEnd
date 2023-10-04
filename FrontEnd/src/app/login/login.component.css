@@ -1,0 +1,23 @@
+body{
+  background-color: rgb(237, 237, 248);
+}
+
+form{
+  display: grid;
+  flex-wrap: center;
+
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+label{
+  font-size:x-large;
+  margin-bottom: 1em;
+}
+
+a{
+  margin-right: 5%;
+}

@@ -1,0 +1,24 @@
+<body>
+  <form (ngSubmit)="usuarioLogin()">
+    <label>Inicio de sesión</label>
+    <div>
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input id="nombreUsuario" name="nombreUsuario" type="email" matInput [(ngModel)]="usuario.nombreUsuario">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input id="claveUsuario" name="claveUsuario" type="password" matInput [(ngModel)]="usuario.claveUsuario">
+      </mat-form-field>
+    </div>
+    <div>
+      <section>
+        <button mat-raised-button type="submit">Iniciar</button>
+        <button mat-raised-button color="primary">Registrarse</button>
+      </section>
+    </div>
+  </form>
+</body>
+
