@@ -9,24 +9,18 @@
         <th>Nombre de Usuario</th>
         <th>Clave de Usuario</th>
         <th>Autoridades</th>
-        <th>Código</th>
-        <th>Especialidad</th>
-        <th>Depositos</th>
         <th>Botones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let empleado of empleados">
-        <td>{{empleado.idUsuario}}</td>
-        <td>{{empleado.nombre}}</td>
-        <td>{{empleado.direccion}}</td>
-        <td>{{empleado.telefono}}</td>
-        <td>{{empleado.nombreUsuario}}</td>
-        <td>{{empleado.claveUsuario}}</td>
-        <td>{{objToString(empleado.autoridades)}}</td>
-        <td>{{empleado.codigo}}</td>
-        <td>{{empleado.especialidad}}</td>
-        <td>{{empleado.depositos}}</td>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{usuario.idUsuario}}</td>
+        <td>{{usuario.nombre}}</td>
+        <td>{{usuario.direccion}}</td>
+        <td>{{usuario.telefono}}</td>
+        <td>{{usuario.nombreUsuario}}</td>
+        <td>{{usuario.claveUsuario}}</td>
+        <td>{{objToString(usuario.autoridades)}}</td>
         <td>
           <button class="botonesCuadro" mat-raised-button color="primary">Editar</button>
           <button class="botonesCuadro" mat-raised-button color="warn">Eliminar</button>
