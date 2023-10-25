@@ -15,27 +15,27 @@ export class UsuarioService {
 
   private loginURL = 'http://localhost:8080/login';
 
-  obetenerTodos():Observable<Usuario[]>{
+  public obetenerTodos():Observable<Usuario[]>{
     return this.http.get<Usuario[]>(this.listaURL);
   }
 
-  login(usuario: Usuario):Observable<object>{
+  public login(usuario: Usuario):Observable<object>{
     return this.http.post(this.loginURL, usuario);
   }
 
   /** POST: add a new hero to the database */
-  agregar(usuario: Usuario): Observable<Usuario> {
+  public agregar(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.listaURL, usuario)
       .pipe(
         catchError(this.handleError('agregar', usuario))
       );
   }
-  handleError(arg0: string, hero: any): (err: any, caught: Observable<Usuario>) => import("rxjs").ObservableInput<any> {
+  public handleError(arg0: string, hero: any): (err: any, caught: Observable<Usuario>) => import("rxjs").ObservableInput<any> {
     throw new Error('Method not implemented.');
   }
 
   /** PUT: update the hero on the server. Returns the updated hero upon success. */
-  modificar(usuario: Usuario): Observable<Usuario>{
+  public modificar(usuario: Usuario): Observable<Usuario>{
     return this.http.put<Usuario>(this.listaURL, usuario)
       .pipe(
         catchError(this.handleError('updateHero', usuario))

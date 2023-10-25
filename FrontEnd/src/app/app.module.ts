@@ -19,6 +19,7 @@ import { ListarSucursalesComponent } from './listar-sucursales/listar-sucursales
 import { ListarZonasComponent } from './listar-zonas/listar-zonas.component';
 import { ListarUsuariosComponent } from './listar-usuarios/listar-usuarios.component';
 import { BarraLateralComponent } from './barra-lateral/barra-lateral.component';
+import { ListarUsuariosModule } from './listar-usuarios/listar-usuarios.module';
 
 const appRoutes: Routes = [
   // {path: 'listar_mis_contratos', component: },
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
 
+    ListarUsuariosModule,
     ListarEmpleadosModule,
 
     LoginModule,
