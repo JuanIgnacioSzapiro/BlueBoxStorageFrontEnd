@@ -13,14 +13,14 @@ export class ListarEmpleadosComponent implements OnInit{
   empleados: Empleado[];
   rol: Rol;
 
-  constructor(private empleadoServicio: EmpleadoService){}
+  constructor(private servicio: EmpleadoService){}
 
   ngOnInit(){
-    this.obtenerEmpleados();
+    this.obtener();
   }
 
-  private obtenerEmpleados(){
-    this.empleadoServicio.obetenerTodos().subscribe(dato=>
+  private obtener(){
+    this.servicio.obetenerTodos().subscribe(dato=>
       {this.empleados=dato;})
   }
 

@@ -24,9 +24,10 @@ export class BarraLateralComponent {
 
         ['Listar contratos', '/listar_contratos', 'rol'],
 
-        ['Listar depóstios', '/listar_depositos', 'rol'],
         ['Listar sucursales', '/listar_sucursales', 'rol'],
         ['Listar zonas', '/listar_zonas', 'rol'],
+        ['Listar depóstios', '/listar_depositos', 'rol'],
+
       ]
     }
   }

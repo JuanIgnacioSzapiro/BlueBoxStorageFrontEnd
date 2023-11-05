@@ -1,0 +1,35 @@
+<div class="contenedorTabla">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Direccion</th>
+        <th>Telefono</th>
+        <th>Nombre de Usuario</th>
+        <th>Clave de Usuario</th>
+        <th>Autoridades</th>
+        <th>DNI</th>
+        <th>Mail</th>
+        <th>Botones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{cliente.idUsuario}}</td>
+        <td>{{cliente.nombre}}</td>
+        <td>{{cliente.direccion}}</td>
+        <td>{{cliente.telefono}}</td>
+        <td>{{cliente.nombreUsuario}}</td>
+        <td>{{cliente.claveUsuario}}</td>
+        <td>{{objToString(cliente.autoridades)}}</td>
+        <td>{{cliente.dni}}</td>
+        <td>{{cliente.mail}}</td>
+        <td>
+          <button class="botonesCuadro" mat-raised-button color="primary">Editar</button>
+          <button class="botonesCuadro" mat-raised-button color="warn">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

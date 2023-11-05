@@ -1,1 +1,23 @@
-<p>listar-depositos works!</p>
+<div class="contenedorTabla">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Volumen</th>
+        <th>Número</th>
+        <th>Botones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let deposito of depositos">
+        <td>{{deposito.idDeposito}}</td>
+        <td>{{deposito.volumen}}</td>
+        <td>{{deposito.numero}}</td>
+        <td>
+          <button class="botonesCuadro" mat-raised-button color="primary">Editar</button>
+          <button class="botonesCuadro" mat-raised-button color="warn">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

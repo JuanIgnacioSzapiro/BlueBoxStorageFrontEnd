@@ -1,3 +1,5 @@
+import { SucursalService } from '../sucursal/sucursal.service';
+import { Sucursal } from './../sucursal/sucursal';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./listar-sucursales.component.css', '../app.component.css']
 })
 export class ListarSucursalesComponent {
+  sucursales: Sucursal[];
 
+  constructor(private servicio: SucursalService){}
+
+  ngOnInit(){
+    this.obtener();
+  }
+
+  private obtener(){
+    this.servicio.obetenerTodos().subscribe(dato=>
+      {this.sucursales=dato;})
+  }
 }
