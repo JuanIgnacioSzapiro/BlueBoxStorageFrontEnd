@@ -11,7 +11,7 @@ export class ZonaService {
 
   constructor(private http: HttpClient) { }
 
-  private listaURL = 'http://localhost:8080/listar_zonas';
+  private listaURL = 'http://localhost:8080/zonas';
 
   obetenerTodos():Observable<Zona[]>{
     return this.http.get<Zona[]>(this.listaURL);

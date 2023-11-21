@@ -11,7 +11,7 @@ export class DepositoService {
 
   constructor(private http: HttpClient) { }
 
-  private listaURL = 'http://localhost:8080/listar_depositos';
+  private listaURL = 'http://localhost:8080/depositos';
 
   obetenerTodos():Observable<Deposito[]>{
     return this.http.get<Deposito[]>(this.listaURL);

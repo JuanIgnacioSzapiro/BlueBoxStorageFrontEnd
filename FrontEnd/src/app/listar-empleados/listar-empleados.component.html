@@ -1,37 +1,158 @@
-<div class="contenedorTabla">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Dirección</th>
-        <th>Telefono</th>
-        <th>Nombre de Usuario</th>
-        <th>Clave de Usuario</th>
-        <th>Autoridades</th>
-        <th>Código</th>
-        <th>Especialidad</th>
-        <th>Depositos</th>
-        <th>Botones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let empleado of empleados">
-        <td>{{empleado.idUsuario}}</td>
-        <td>{{empleado.nombre}}</td>
-        <td>{{empleado.direccion}}</td>
-        <td>{{empleado.telefono}}</td>
-        <td>{{empleado.nombreUsuario}}</td>
-        <td>{{empleado.claveUsuario}}</td>
-        <td>{{objToString(empleado.autoridades)}}</td>
-        <td>{{empleado.codigo}}</td>
-        <td>{{empleado.especialidad}}</td>
-        <td>{{empleado.depositos}}</td>
-        <td>
-          <button class="botonesCuadro" mat-raised-button color="primary">Editar</button>
-          <button class="botonesCuadro" mat-raised-button color="warn">Eliminar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div>
+  <div>
+    <button mat-raised-button color="warn" class="botonNuevo" (click)="mostrarAgregarVisible()">Nuevo Empleado</button>
+  </div>
+
+  <div *ngIf="agregarVisible" >
+    <form (ngSubmit)="guardarNuevo()">
+      <mat-card class="formCard" class="editable">
+        <mat-card-content class="card">
+          <h2>Nuevo Empleado</h2>
+          <mat-form-field required>
+            <mat-label>
+              Nombre
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.nombre"
+            matInput
+            name="nuevo_nombre">
+          </mat-form-field>
+          <mat-form-field required>
+            <mat-label>
+              Dirección
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.direccion"
+            matInput
+            name="nuevo_direccion">
+          </mat-form-field>
+          <mat-form-field required>
+            <mat-label>
+              Teléfono
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.telefono"
+            matInput
+            name="nuevo_telefono">
+          </mat-form-field>
+          <mat-form-field required>
+            <mat-label>
+              Nombre de usuario
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.nombreUsuario"
+            matInput
+            name="nuevo_nombreUsuario">
+          </mat-form-field>
+          <mat-form-field required>
+            <mat-label>
+              Clave de usuario
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.claveUsuario"
+            matInput
+            name="nuevo_claveUsuario">
+          </mat-form-field>
+          <!-- <mat-form-field required>
+            <mat-label>
+              Administrador
+            </mat-label>
+            <input
+            type="checkbox"
+            (change)="cambiarAdministrador()"
+            matInput
+            name="nuevo_">
+          </mat-form-field> -->
+          <mat-form-field required>
+            <mat-label>
+              Código
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.codigo"
+            matInput
+            name="nuevo_codigo">
+          </mat-form-field>
+          <mat-form-field required>
+            <mat-label>
+              Especialidad
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.especialidad"
+            matInput
+            name="nuevo_especialidad">
+          </mat-form-field>
+          <mat-form-field required>
+            <mat-label>
+              Depósitos
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.depositos"
+            matInput
+            name="nuevo_depositos">
+          </mat-form-field>
+        </mat-card-content>
+        <div>
+          <button class="botonesCuadro" color="accent" mat-raised-button color="primary" type="submit">Guardar</button>
+          <button class="botonesCuadro botonBlanco" color="accent" mat-raised-button color="basic" (click)="mostrarAgregarVisible()">Cerrar</button>
+        </div>
+      </mat-card>
+    </form>
+  </div>
+
+  <div *ngIf="editarVisible" class="editable">
+    <label>Editar empleado</label>
+    <div>
+
+    </div>
+    <div>
+      <button class="botonesCuadro" mat-raised-button color="primary" type="submit" (click)="mostrarEditarVisible(nuevo)">Guardar</button>
+      <button class="botonesCuadro" mat-raised-button (click)="mostrarEditarVisible(nuevo)">Cerrar</button>
+    </div>
+  </div>
+
+  <div class="contenedorTabla">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Dirección</th>
+          <th>Telefono</th>
+          <th>Nombre de Usuario</th>
+          <th>Clave de Usuario</th>
+          <th>Autoridades</th>
+          <th>Código</th>
+          <th>Especialidad</th>
+          <th>Depositos</th>
+          <th>Botones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empleado of empleados">
+          <td>{{empleado.idUsuario}}</td>
+          <td>{{empleado.nombre}}</td>
+          <td>{{empleado.direccion}}</td>
+          <td>{{empleado.telefono}}</td>
+          <td>{{empleado.nombreUsuario}}</td>
+          <td>{{empleado.claveUsuario}}</td>
+          <td>{{objToString(empleado.autoridades)}}</td>
+          <td>{{empleado.codigo}}</td>
+          <td>{{empleado.especialidad}}</td>
+          <td>{{empleado.depositos}}</td>
+          <td>
+            <button class="botonesCuadro" mat-raised-button color="primary" (click)="mostrarEditarVisible(empleado)">Editar</button>
+            <button class="botonesCuadro" mat-raised-button color="warn">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -1,7 +1,9 @@
+import { AppComponent } from './../app.component';
+import { Empleado } from './../empleado/empleado';
 import { Component, OnInit } from '@angular/core';
-import { Empleado } from '../empleado/empleado';
 import { EmpleadoService } from '../empleado/empleado.service';
 import { Rol } from '../rol/rol';
+import { RolService } from '../rol/rol.service';
 
 @Component({
   selector: 'app-listar-empleados',
@@ -11,11 +13,22 @@ import { Rol } from '../rol/rol';
 
 export class ListarEmpleadosComponent implements OnInit{
   empleados: Empleado[];
+  roles: Rol[];
   rol: Rol;
 
-  constructor(private servicio: EmpleadoService){}
+  editable: Empleado;
+  nuevo = new Empleado;
+
+  agregarVisible: Boolean;
+  editarVisible: Boolean;
+
+  administrador: Boolean;
+  constructor(private servicio: EmpleadoService, private servicioRol: RolService){}
 
   ngOnInit(){
+    this.administrador= false;
+    this.agregarVisible=false;
+    this.editarVisible=false;
     this.obtener();
   }
 
@@ -35,6 +48,34 @@ export class ListarEmpleadosComponent implements OnInit{
       }
     }
     return str;
+  }
+
+  public mostrarAgregarVisible(){
+    this.agregarVisible=!this.agregarVisible
+    this.nuevo=new Empleado;
+  }
+
+  private obtenerRoles(){
+    this.servicioRol.obetenerTodos().subscribe(dato=>
+      {this.roles=dato;})
+  }
+
+  public guardarNuevo(){
+  }
+
+  public mostrarEditarVisible(empleado: Empleado){
+    if(this.editarVisible==false){
+      this.editable=empleado;
+    }
+    this.editarVisible=!this.editarVisible
+  }
+
+  public guardarEditado(x: Empleado){
+
+  }
+
+  public cambiarAdministrador(){
+    this.administrador=!this.administrador;
   }
 }
 

@@ -18,9 +18,15 @@ mat-drawer-content{
   max-width: 90%;
 
   position: absolute;
-  top: 20%;
+  top: 15vh;
   left: 5%;
   right: 5%;
+}
+
+@media (max-height: 600px) {
+  .contenedorTabla{
+    top: 30vh;
+  }
 }
 
 table {
@@ -73,4 +79,37 @@ a[href] {
 
 .botonesCuadro{
   margin: 3%;
+}
+
+.botonNuevo{
+  position: absolute;
+  left: 75%;
+}
+
+.botonBlanco{
+  background-color: white;
+}
+
+.editable
+{
+  display: grid;
+  flex-wrap: center;
+
+  position: absolute;
+  top: 5%;
+  left: 40%;
+
+  min-width: fit-content;
+
+  max-width: 30vw;
+  max-height: fit-content;
+  background-color: rgb(172, 193, 248);
+  opacity: 1;
+
+  z-index: 100;
+}
+
+.card{
+  display: grid;
+  flex-wrap: center;
 }

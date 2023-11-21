@@ -11,7 +11,7 @@ export class ContratoService {
 
   constructor(private http: HttpClient) { }
 
-  private listaURL = 'http://localhost:8080/listar_contratos';
+  private listaURL = 'http://localhost:8080/contratos';
 
   obetenerTodos():Observable<Contrato[]>{
     return this.http.get<Contrato[]>(this.listaURL);

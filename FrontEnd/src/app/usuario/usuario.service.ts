@@ -11,7 +11,7 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  private listaURL = 'http://localhost:8080/listar_usuarios';
+  private listaURL = 'http://localhost:8080/usuarios';
 
   private loginURL = 'http://localhost:8080/login';
 

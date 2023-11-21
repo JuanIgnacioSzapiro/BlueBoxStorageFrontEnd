@@ -10,8 +10,11 @@ import { ListarEmpleadosModule } from './listar-empleados/listar-empleados.modul
 import { Route, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ListarEmpleadosComponent } from './listar-empleados/listar-empleados.component';
+
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+
 import { ListarClientesComponent } from './listar-clientes/listar-clientes.component';
 import { ListarContratosComponent } from './listar-contratos/listar-contratos.component';
 import { ListarDepositosComponent } from './listar-depositos/listar-depositos.component';
@@ -47,6 +50,7 @@ const appRoutes: Routes = [
 
     MatSidenavModule,
     MatListModule,
+    MatCardModule,
 
     HttpClientModule,
     RouterModule.forRoot(appRoutes),

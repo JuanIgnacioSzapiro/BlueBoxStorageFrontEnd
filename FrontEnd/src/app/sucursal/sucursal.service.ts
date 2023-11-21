@@ -11,7 +11,7 @@ export class SucursalService {
 
   constructor(private http: HttpClient) { }
 
-  private listaURL = 'http://localhost:8080/listar_sucursales';
+  private listaURL = 'http://localhost:8080/sucursales';
 
   obetenerTodos():Observable<Sucursal[]>{
     return this.http.get<Sucursal[]>(this.listaURL);

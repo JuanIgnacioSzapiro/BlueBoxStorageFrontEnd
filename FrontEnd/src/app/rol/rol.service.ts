@@ -11,7 +11,7 @@ export class RolService {
 
   constructor(private http: HttpClient) { }
 
-  private listaURL = 'http://localhost:8080/listar_roles';
+  private listaURL = 'http://localhost:8080/roles';
 
   obetenerTodos():Observable<Rol[]>{
     return this.http.get<Rol[]>(this.listaURL);

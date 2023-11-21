@@ -11,7 +11,7 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
-  private listaURL = 'http://localhost:8080/listar_clientes';
+  private listaURL = 'http://localhost:8080/clientes';
 
   obetenerTodos():Observable<Cliente[]>{
     return this.http.get<Cliente[]>(this.listaURL);
