@@ -2,8 +2,6 @@ import { AppComponent } from './../app.component';
 import { Empleado } from './../empleado/empleado';
 import { Component, OnInit } from '@angular/core';
 import { EmpleadoService } from '../empleado/empleado.service';
-import { Rol } from '../rol/rol';
-import { RolService } from '../rol/rol.service';
 
 @Component({
   selector: 'app-listar-empleados',
@@ -13,8 +11,6 @@ import { RolService } from '../rol/rol.service';
 
 export class ListarEmpleadosComponent implements OnInit{
   empleados: Empleado[];
-  roles: Rol[];
-  rol: Rol;
 
   editable: Empleado;
   nuevo = new Empleado;
@@ -23,7 +19,7 @@ export class ListarEmpleadosComponent implements OnInit{
   editarVisible: Boolean;
 
   administrador: Boolean;
-  constructor(private servicio: EmpleadoService, private servicioRol: RolService){}
+  constructor(private servicio: EmpleadoService){}
 
   ngOnInit(){
     this.administrador= false;
@@ -37,27 +33,14 @@ export class ListarEmpleadosComponent implements OnInit{
       {this.empleados=dato;})
   }
 
-  public objToString(obj: Object){
+  public objToString(isAdministrador: boolean, isEmpleado: boolean){
     let str = '';
-    let contador: any;
-    for(contador of Object.entries(obj)){
-      this.rol = contador[1];
-      str += this.rol.autoridad;
-      if (contador[0] < Object.entries(obj).length-1) {
-        str += ', ';
-      }
-    }
     return str;
   }
 
   public mostrarAgregarVisible(){
     this.agregarVisible=!this.agregarVisible
     this.nuevo=new Empleado;
-  }
-
-  private obtenerRoles(){
-    this.servicioRol.obetenerTodos().subscribe(dato=>
-      {this.roles=dato;})
   }
 
   public guardarNuevo(){

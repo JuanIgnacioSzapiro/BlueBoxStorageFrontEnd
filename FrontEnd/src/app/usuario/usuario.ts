@@ -1,5 +1,3 @@
-import { Rol } from "../rol/rol";
-
 export class Usuario {
   idUsuario!:number;
   nombre!:string;
@@ -7,5 +5,4 @@ export class Usuario {
   telefono!:string;
   nombreUsuario!:string;
   claveUsuario!:string;
-  autoridades!:Set<Rol>;
 }
