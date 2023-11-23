@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -22,7 +23,9 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     BrowserModule,
     FormsModule,
-    MatCardModule],
+    MatCardModule,
+    MatCheckboxModule,
+  ],
   exports:[ListarEmpleadosComponent],
   declarations: [ListarEmpleadosComponent]
 })

@@ -5,10 +5,11 @@
 
   <div *ngIf="agregarVisible" >
     <form (ngSubmit)="guardarNuevo()">
+      <!-- FALTA LA ASIGNACION DE DEPOSITOS -->
       <mat-card class="formCard" class="editable">
         <mat-card-content class="card">
           <h2>Nuevo Empleado</h2>
-          <mat-form-field required>
+          <mat-form-field >
             <mat-label>
               Nombre
             </mat-label>
@@ -18,7 +19,7 @@
             matInput
             name="nuevo_nombre">
           </mat-form-field>
-          <mat-form-field required>
+          <mat-form-field >
             <mat-label>
               Dirección
             </mat-label>
@@ -28,7 +29,7 @@
             matInput
             name="nuevo_direccion">
           </mat-form-field>
-          <mat-form-field required>
+          <mat-form-field >
             <mat-label>
               Teléfono
             </mat-label>
@@ -38,7 +39,7 @@
             matInput
             name="nuevo_telefono">
           </mat-form-field>
-          <mat-form-field required>
+          <mat-form-field >
             <mat-label>
               Nombre de usuario
             </mat-label>
@@ -48,7 +49,7 @@
             matInput
             name="nuevo_nombreUsuario">
           </mat-form-field>
-          <mat-form-field required>
+          <mat-form-field >
             <mat-label>
               Clave de usuario
             </mat-label>
@@ -58,17 +59,8 @@
             matInput
             name="nuevo_claveUsuario">
           </mat-form-field>
-          <!-- <mat-form-field required>
-            <mat-label>
-              Administrador
-            </mat-label>
-            <input
-            type="checkbox"
-            (change)="cambiarAdministrador()"
-            matInput
-            name="nuevo_">
-          </mat-form-field> -->
-          <mat-form-field required>
+          <mat-checkbox (change)="cambiarAdministrador()" value="before" color="primary">¿Es administrador?</mat-checkbox>
+          <mat-form-field >
             <mat-label>
               Código
             </mat-label>
@@ -78,7 +70,7 @@
             matInput
             name="nuevo_codigo">
           </mat-form-field>
-          <mat-form-field required>
+          <mat-form-field >
             <mat-label>
               Especialidad
             </mat-label>
@@ -87,16 +79,6 @@
             [(ngModel)]="nuevo.especialidad"
             matInput
             name="nuevo_especialidad">
-          </mat-form-field>
-          <mat-form-field required>
-            <mat-label>
-              Depósitos
-            </mat-label>
-            <input
-            type="text"
-            [(ngModel)]="nuevo.depositos"
-            matInput
-            name="nuevo_depositos">
           </mat-form-field>
         </mat-card-content>
         <div>
@@ -143,13 +125,13 @@
           <td>{{empleado.telefono}}</td>
           <td>{{empleado.nombreUsuario}}</td>
           <td>{{empleado.claveUsuario}}</td>
-          <td>{{objToString(empleado.administrador, empleado.empleado)}}</td>
+          <td>{{objToString(empleado.administrador)}}</td>
           <td>{{empleado.codigo}}</td>
           <td>{{empleado.especialidad}}</td>
           <td>{{empleado.depositos}}</td>
           <td>
             <button class="botonesCuadro" mat-raised-button color="primary" (click)="mostrarEditarVisible(empleado)">Editar</button>
-            <button class="botonesCuadro" mat-raised-button color="warn">Eliminar</button>
+            <button class="botonesCuadro" mat-raised-button color="warn" (click)="eliminar(empleado)">Eliminar</button>
           </td>
         </tr>
       </tbody>

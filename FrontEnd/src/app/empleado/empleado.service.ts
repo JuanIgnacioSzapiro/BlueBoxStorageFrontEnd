@@ -14,27 +14,21 @@ export class EmpleadoService {
   private listaURL = 'http://localhost:8080/empleados'
 
 
-  obetenerTodos():Observable<Empleado[]>{
+  public obetenerTodos():Observable<Empleado[]>{
     return this.http.get<Empleado[]>(this.listaURL);
   }
 
   /** POST: add a new hero to the database */
-  agregar(empleado: Empleado): Observable<Empleado> {
-    return this.http.post<Empleado>(this.listaURL, empleado)
-      .pipe(
-        catchError(this.handleError('agregar', empleado))
-      );
-  }
-
-  handleError(arg0: string, hero: any): (err: any, caught: Observable<Empleado>) => import("rxjs").ObservableInput<any> {
-    throw new Error('Method not implemented.');
+  public agregar(empleado: Empleado): Observable<Empleado> {
+    return this.http.post<Empleado>(this.listaURL, empleado);
   }
 
   /** PUT: update the hero on the server. Returns the updated hero upon success. */
-  modificar(empleado: Empleado): Observable<Empleado>{
-    return this.http.put<Empleado>(this.listaURL+'/{'+empleado.idUsuario+'}', empleado)
-      .pipe(
-        catchError(this.handleError('updateHero', empleado))
-      );
+  public modificar(empleado: Empleado): Observable<Empleado>{
+    return this.http.put<Empleado>(this.listaURL+'/'+empleado.idUsuario, empleado);
+  }
+
+  public eliminar(empleado: Empleado): Observable<Object>{
+    return this.http.delete(this.listaURL+'/'+empleado.idUsuario);
   }
 }
