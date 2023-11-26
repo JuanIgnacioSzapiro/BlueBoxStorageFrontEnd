@@ -12,9 +12,7 @@ import { Usuario } from '../usuario/usuario';
 export class LoginComponent implements OnInit {
   usuario:Usuario = new Usuario();
 
-  constructor(private usuarioService: UsuarioService, private appComponent: AppComponent) {
-
-  }
+  constructor(private usuarioService: UsuarioService, private appComponent: AppComponent) {}
 
   ngOnInit() {
   }
@@ -23,5 +21,9 @@ export class LoginComponent implements OnInit {
     this.usuarioService.login(this.usuario).subscribe(data=>{
       this.appComponent.logueado();
     },error=>alert("Falló"));
+  }
+
+  registrarseView(){
+    this.appComponent.registrarse();
   }
 }

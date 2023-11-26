@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Empleado } from './empleado';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +26,7 @@ export class EmpleadoService {
   public modificar(empleado: Empleado): Observable<Empleado>{
     return this.http.put<Empleado>(this.listaURL+'/'+empleado.idUsuario, empleado);
   }
-
+  /** DELETE: delete the hero from the server */
   public eliminar(empleado: Empleado): Observable<Object>{
     return this.http.delete(this.listaURL+'/'+empleado.idUsuario);
   }

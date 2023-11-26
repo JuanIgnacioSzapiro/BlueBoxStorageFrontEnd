@@ -1,1 +1,85 @@
-<p>registrarse works!</p>
+<body>
+  <div>
+    <button class="botonesCuadro" mat-raised-button color="primary" (click)="volver()">Volver</button>
+  </div>
+  <form (ngSubmit)="guardarRegistrado()">
+    <mat-card class="editable">
+        <mat-card-content class="card">
+          <h2>Registrarse</h2>
+          <mat-form-field>
+            <mat-label>
+            Nombre
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevoCliente.nombre"
+            matInput
+            name="nuevoCliente_nombre">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+            Dirección
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevoCliente.direccion"
+            matInput
+            name="nuevoCliente_direccion">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+            Teléfono
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevoCliente.telefono"
+            matInput
+            name="nuevoCliente_telefono">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+            Nombre de usuario
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevoCliente.nombreUsuario"
+            matInput
+            name="nuevoCliente_nombreUsuario">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+            Clave de usuario
+            </mat-label>
+            <input
+            type="password"
+            [(ngModel)]="nuevoCliente.claveUsuario"
+            matInput
+            name="nuevoCliente_claveUsuario">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+            DNI
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevoCliente.dni"
+            matInput
+            name="nuevoCliente_dni">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+            Mail
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevoCliente.mail"
+            matInput
+            name="nuevoCliente_mail">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
+        </mat-card-actions>
+    </mat-card>
+  </form>
+</body>

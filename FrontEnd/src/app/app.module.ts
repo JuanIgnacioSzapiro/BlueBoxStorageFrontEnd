@@ -23,6 +23,13 @@ import { ListarZonasComponent } from './listar-zonas/listar-zonas.component';
 import { ListarUsuariosComponent } from './listar-usuarios/listar-usuarios.component';
 import { BarraLateralComponent } from './barra-lateral/barra-lateral.component';
 import { ListarUsuariosModule } from './listar-usuarios/listar-usuarios.module';
+import { RegistrarseComponent } from './registrarse/registrarse.component';
+import { RegistrarseModule } from './registrarse/registrarse.module';
+import { ListarClientesModule } from './listar-clientes/listar-clientes.module';
+import { ListarContratosModule } from './listar-contratos/listar-contratos.module';
+import { ListarDepositosModule } from './listar-depositos/listar-depositos.module';
+import { ListarSucursalesModule } from './listar-sucursales/listar-sucursales.module';
+import { ListarZonasModule } from './listar-zonas/listar-zonas.module';
 
 const appRoutes: Routes = [
   // {path: 'listar_mis_contratos', component: },
@@ -37,6 +44,7 @@ const appRoutes: Routes = [
   {path: 'listar_depositos', component: ListarDepositosComponent},
   {path: 'listar_sucursales', component: ListarSucursalesComponent},
   {path: 'listar_zonas', component: ListarZonasComponent},
+  {path: 'registrarse', component: RegistrarseComponent},
 ];
 
 @NgModule({
@@ -57,8 +65,14 @@ const appRoutes: Routes = [
 
     ListarUsuariosModule,
     ListarEmpleadosModule,
+    ListarClientesModule,
+    ListarContratosModule,
+    ListarDepositosModule,
+    ListarSucursalesModule,
+    ListarZonasModule,
 
     LoginModule,
+    RegistrarseModule,
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent]

@@ -14,12 +14,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatFormFieldModule, MatInputModule,
-    MatTableModule,
     MatButtonModule,
     BrowserModule,
     FormsModule,

@@ -6,7 +6,7 @@
   <div *ngIf="agregarVisible" >
     <form (ngSubmit)="guardarNuevo()">
       <!-- FALTA LA ASIGNACION DE DEPOSITOS -->
-      <mat-card class="formCard" class="editable">
+      <mat-card class="formCard editable">
         <mat-card-content class="card">
           <h2>Nuevo Empleado</h2>
           <mat-form-field >
@@ -59,7 +59,7 @@
             matInput
             name="nuevo_claveUsuario">
           </mat-form-field>
-          <mat-checkbox (change)="cambiarAdministrador()" value="before" color="primary">¿Es administrador?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="nuevo.administrador" name="nuevo_administrador" value="before" color="primary">¿Es administrador?</mat-checkbox>
           <mat-form-field >
             <mat-label>
               Código
@@ -82,22 +82,97 @@
           </mat-form-field>
         </mat-card-content>
         <div>
-          <button class="botonesCuadro" color="accent" mat-raised-button color="primary" type="submit">Guardar</button>
-          <button class="botonesCuadro botonBlanco" color="accent" mat-raised-button color="basic" (click)="mostrarAgregarVisible()">Cerrar</button>
+          <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
+          <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarAgregarVisible()">Cerrar</button>
         </div>
       </mat-card>
     </form>
   </div>
 
-  <div *ngIf="editarVisible" class="editable">
-    <label>Editar empleado</label>
-    <div>
-
-    </div>
-    <div>
-      <button class="botonesCuadro" mat-raised-button color="primary" type="submit" (click)="mostrarEditarVisible(nuevo)">Guardar</button>
-      <button class="botonesCuadro" mat-raised-button (click)="mostrarEditarVisible(nuevo)">Cerrar</button>
-    </div>
+  <div *ngIf="editarVisible">
+    <form (ngSubmit)="guardarEditado(editable)">
+      <!-- FALTA LA ASIGNACION DE DEPOSITOS -->
+      <mat-card class="formCard editable">
+        <mat-card-content class="card">
+          <h2>Editar empleado</h2>
+          <mat-form-field >
+            <mat-label>
+              Nombre
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="editable.nombre"
+            matInput
+            name="editable_nombre">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+              Dirección
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="editable.direccion"
+            matInput
+            name="editable_direccion">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+              Teléfono
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="editable.telefono"
+            matInput
+            name="editable_telefono">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+              Nombre de usuario
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="editable.nombreUsuario"
+            matInput
+            name="editable_nombreUsuario">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+              Clave de usuario
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="editable.claveUsuario"
+            matInput
+            name="editable_claveUsuario">
+          </mat-form-field>
+          <mat-checkbox [(ngModel)]="editable.administrador" value="before" color="primary" name="editable_administrador">¿Es administrador?</mat-checkbox>
+          <mat-form-field >
+            <mat-label>
+              Código
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="editable.codigo"
+            matInput
+            name="editable_codigo">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+              Especialidad
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="editable.especialidad"
+            matInput
+            name="editable_especialidad">
+          </mat-form-field>
+        </mat-card-content>
+        <div>
+          <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
+          <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarEditarVisible(editable)">Cerrar</button>
+        </div>
+      </mat-card>
+    </form>
   </div>
 
   <div class="contenedorTabla">

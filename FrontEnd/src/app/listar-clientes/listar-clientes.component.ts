@@ -1,5 +1,5 @@
 import { ClienteService } from './../cliente/cliente.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../cliente/cliente';
 
 @Component({
@@ -7,22 +7,25 @@ import { Cliente } from '../cliente/cliente';
   templateUrl: './listar-clientes.component.html',
   styleUrls: ['./listar-clientes.component.css', '../app.component.css']
 })
-export class ListarClientesComponent {
+export class ListarClientesComponent implements OnInit{
   clientes: Cliente[];
 
-  constructor(private servicio: ClienteService){}
+  constructor(private servicioCliente: ClienteService){}
 
   ngOnInit(){
-    this.obtener();
+    this.obtenerClientes();
   }
 
-  private obtener(){
-    this.servicio.obetenerTodos().subscribe(dato=>
-      {this.clientes=dato;})
+  private obtenerClientes(){
+    this.servicioCliente.obetenerTodos().subscribe(dato=>
+      {this.clientes=dato;});
   }
 
   public objToString(isCliente: boolean, isPendiente:boolean){
     let str = '';
+    if (isPendiente){
+      str += "PENDIENTE";
+    }
     return str;
   }
 }
