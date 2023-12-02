@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Zona } from './zona';
+import { Sucursal } from '../sucursal/sucursal';
 
 @Injectable({
   providedIn: 'root'
@@ -18,21 +19,21 @@ export class ZonaService {
   }
 
   /** POST: add a new hero to the database */
-  agregar(zona: Zona): Observable<Zona> {
-    return this.http.post<Zona>(this.listaURL, zona)
-      .pipe(
-        catchError(this.handleError('agregar', zona))
-      );
-  }
-  handleError(arg0: string, hero: any): (err: any, caught: Observable<Zona>) => import("rxjs").ObservableInput<any> {
-    throw new Error('Method not implemented.');
+  public agregar(zona: Zona): Observable<Zona> {
+    return this.http.post<Zona>(this.listaURL, zona);
   }
 
   /** PUT: update the hero on the server. Returns the updated hero upon success. */
-  modificar(zona: Zona): Observable<Zona>{
-    return this.http.put<Zona>(this.listaURL, zona)
-      .pipe(
-        catchError(this.handleError('updateHero', zona))
-      );
+  public modificar(zona: Zona): Observable<Zona>{
+    return this.http.put<Zona>(this.listaURL+'/'+zona.idZona, zona);
+  }
+
+  /** DELETE: delete the hero from the server */
+  public eliminar(zona: Zona): Observable<Object>{
+    return this.http.delete(this.listaURL+'/'+zona.idZona);
+  }
+
+  public obetenerZonasDeSucursal(x: any):Observable<Zona[]>{
+    return this.http.get<Zona[]>(this.listaURL+'/'+Number(x));
   }
 }

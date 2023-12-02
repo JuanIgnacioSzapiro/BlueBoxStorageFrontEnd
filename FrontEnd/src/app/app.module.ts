@@ -30,20 +30,28 @@ import { ListarContratosModule } from './listar-contratos/listar-contratos.modul
 import { ListarDepositosModule } from './listar-depositos/listar-depositos.module';
 import { ListarSucursalesModule } from './listar-sucursales/listar-sucursales.module';
 import { ListarZonasModule } from './listar-zonas/listar-zonas.module';
+import { ListarMisContratosComponent } from './listar-mis-contratos/listar-mis-contratos.component';
+import { ListarMisDepositosComponent } from './listar-mis-depositos/listar-mis-depositos.component';
+import { ListarMisContratosModule } from './listar-mis-contratos/listar-mis-contratos.module';
+import { ListarMisDepositosModule } from './listar-mis-depositos/listar-mis-depositos.module';
 
 const appRoutes: Routes = [
-  // {path: 'listar_mis_contratos', component: },
-  // {path: 'listar_mis_depositos', component: },
+  {path: 'listar_mis_contratos', component: ListarMisContratosComponent},
+  {path: 'listar_mis_depositos', component: ListarMisDepositosComponent},
 
-  {path: 'listar_usuarios', component: ListarUsuariosComponent},
+  // {path: 'listar_usuarios', component: ListarUsuariosComponent},
   {path: 'listar_clientes', component: ListarClientesComponent},
   {path: 'listar_empleados', component: ListarEmpleadosComponent},
 
   {path: 'listar_contratos', component: ListarContratosComponent},
+  {path: 'listar_contratos/:id', component: ListarContratosComponent},
 
   {path: 'listar_depositos', component: ListarDepositosComponent},
-  {path: 'listar_sucursales', component: ListarSucursalesComponent},
+  {path: 'listar_depositos/:id', component: ListarDepositosComponent},
   {path: 'listar_zonas', component: ListarZonasComponent},
+  {path: 'listar_zonas/:id', component: ListarZonasComponent},
+  {path: 'listar_sucursales', component: ListarSucursalesComponent},
+  {path: 'listar_sucursales/:id', component: ListarSucursalesComponent},
   {path: 'registrarse', component: RegistrarseComponent},
 ];
 
@@ -70,6 +78,8 @@ const appRoutes: Routes = [
     ListarDepositosModule,
     ListarSucursalesModule,
     ListarZonasModule,
+    ListarMisContratosModule,
+    ListarMisDepositosModule,
 
     LoginModule,
     RegistrarseModule,

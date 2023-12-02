@@ -1,3 +1,4 @@
+import { ListarZonasComponent } from './../listar-zonas/listar-zonas.component';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
 export class BarraLateralComponent {
   sideBarItems: any;
 
+  listarZonasComponent: ListarZonasComponent;
+
   constructor(){
 
   }
@@ -15,18 +18,18 @@ export class BarraLateralComponent {
   ngOnInit(){
     this.sideBarItems={
       nombreYredireccionamiento: [
-        ['Listar mis contratos', '/listar_mis_contratos', 'rol'],
-        ['Listar mis depositos', '/listar_mis_depositos', 'rol'],
+        ['Listar mis contratos', '/listar_mis_contratos'],
+        ['Listar mis depositos', '/listar_mis_depositos'],
 
-        ['Listar usuarios', '/listar_usuarios', 'rol'],
-        ['Listar clientes', '/listar_clientes', 'rol'],
-        ['Listar empleados', '/listar_empleados', 'rol'],
+        // ['Listar usuarios', '/listar_usuarios', 'rol'],
+        ['Listar clientes', '/listar_clientes'],
+        ['Listar empleados', '/listar_empleados'],
 
-        ['Listar contratos', '/listar_contratos', 'rol'],
+        ['Listar contratos', '/listar_contratos'],
 
-        ['Listar sucursales', '/listar_sucursales', 'rol'],
-        ['Listar zonas', '/listar_zonas', 'rol'],
-        ['Listar depóstios', '/listar_depositos', 'rol'],
+        ['Listar sucursales', '/listar_sucursales'],
+        ['Listar zonas', '/listar_zonas'],
+        ['Listar depóstios', '/listar_depositos'],
 
       ]
     }

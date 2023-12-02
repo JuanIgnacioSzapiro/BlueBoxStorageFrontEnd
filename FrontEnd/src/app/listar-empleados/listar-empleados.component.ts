@@ -74,25 +74,25 @@ export class ListarEmpleadosComponent implements OnInit{
     if(this.checkearInexistencia(this.nuevo)){
       alert("El usuario con el nombre de usuario '"+this.nuevo.nombreUsuario+"' ya existe");
     }
-    else if(this.nuevo.claveUsuario==null){
+    else if(this.nuevo.claveUsuario=="" || this.nuevo.claveUsuario==null){
       alert("El campo 'Clave de usuario' está incompleto");
     }
-    else if(this.nuevo.codigo==null){
+    else if(this.nuevo.codigo=="" || this.nuevo.codigo==null){
       alert("El campo 'Código' está incompleto");
     }
-    else if(this.nuevo.direccion==null){
+    else if(this.nuevo.direccion=="" || this.nuevo.direccion==null){
       alert("El campo 'Dirección' está incompleto");
     }
-    else if(this.nuevo.especialidad==null){
+    else if(this.nuevo.especialidad=="" || this.nuevo.especialidad==null){
       alert("El campo 'Especialidad' está incompleto");
     }
-    else if(this.nuevo.nombre==null){
+    else if(this.nuevo.nombre=="" || this.nuevo.nombre==null){
       alert("El campo 'Nombre' está incompleto");
     }
-    else if(this.nuevo.nombreUsuario==null){
+    else if(this.nuevo.nombreUsuario=="" || this.nuevo.nombreUsuario==null){
       alert("El campo 'Nombre de usuario' está incompleto");
     }
-    else if(this.nuevo.telefono==null){
+    else if(this.nuevo.telefono=="" || this.nuevo.telefono==null){
       alert("El campo 'Teléfono' está incompleto");
     }
     else{
@@ -114,25 +114,25 @@ export class ListarEmpleadosComponent implements OnInit{
       alert("El empleado con el nombre de usuario '"+x.nombreUsuario+"' ya existe");
     }
     else{
-      if(x.claveUsuario==null){
+      if(this.nuevo.claveUsuario=="" || this.nuevo.claveUsuario==null){
         alert("El campo 'Clave de usuario' está incompleto");
       }
-      else if(x.codigo==null){
+      else if(this.nuevo.codigo=="" || this.nuevo.codigo==null){
         alert("El campo 'Código' está incompleto");
       }
-      else if(x.direccion==null){
+      else if(this.nuevo.direccion=="" || this.nuevo.direccion==null){
         alert("El campo 'Dirección' está incompleto");
       }
-      else if(x.especialidad==null){
+      else if(this.nuevo.especialidad=="" || this.nuevo.especialidad==null){
         alert("El campo 'Especialidad' está incompleto");
       }
-      else if(x.nombre==null){
+      else if(this.nuevo.nombre=="" || this.nuevo.nombre==null){
         alert("El campo 'Nombre' está incompleto");
       }
-      else if(x.nombreUsuario==null){
+      else if(this.nuevo.nombreUsuario=="" || this.nuevo.nombreUsuario==null){
         alert("El campo 'Nombre de usuario' está incompleto");
       }
-      else if(x.telefono==null){
+      else if(this.nuevo.telefono=="" || this.nuevo.telefono==null){
         alert("El campo 'Teléfono' está incompleto");
       }
       else{
@@ -160,6 +160,10 @@ export class ListarEmpleadosComponent implements OnInit{
     else{
       alert("No se puede eliminar el administrador");
     }
+  }
+
+  public verMas(x: Empleado){
+
   }
 }
 

@@ -18,21 +18,20 @@ export class DepositoService {
   }
 
   /** POST: add a new hero to the database */
-  agregar(deposito: Deposito): Observable<Deposito> {
-    return this.http.post<Deposito>(this.listaURL, deposito)
-      .pipe(
-        catchError(this.handleError('agregar', deposito))
-      );
-  }
-  handleError(arg0: string, hero: any): (err: any, caught: Observable<Deposito>) => import("rxjs").ObservableInput<any> {
-    throw new Error('Method not implemented.');
+  public agregar(deposito: Deposito): Observable<Deposito> {
+    return this.http.post<Deposito>(this.listaURL, deposito);
   }
 
   /** PUT: update the hero on the server. Returns the updated hero upon success. */
-  modificar(deposito: Deposito): Observable<Deposito>{
-    return this.http.put<Deposito>(this.listaURL, deposito)
-      .pipe(
-        catchError(this.handleError('updateHero', deposito))
-      );
+  public modificar(deposito: Deposito): Observable<Deposito>{
+    return this.http.put<Deposito>(this.listaURL+'/'+deposito.idDeposito, deposito);
   }
+  /** DELETE: delete the hero from the server */
+  public eliminar(deposito: Deposito): Observable<Object>{
+    return this.http.delete(this.listaURL+'/'+deposito.idDeposito);
+  }
+
+  // obetenerTodos():Observable<Deposito[]>{
+  //   return this.http.get<Deposito[]>(this.listaURL+'/'+);
+  // }
 }

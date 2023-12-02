@@ -1,25 +1,98 @@
-<div class="contenedorTabla">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Dirección</th>
-        <th>Teléfono</th>
-        <th>Zonas</th>
-        <th>Botones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let sucursal of sucursales">
-        <td>{{sucursal.idSucursal}}</td>
-        <td>{{sucursal.direccion}}</td>
-        <td>{{sucursal.telefono}}</td>
-        <td>{{sucursal.zonas}}</td>
-        <td>
-          <button class="botonesCuadro" mat-raised-button color="primary">Editar</button>
-          <button class="botonesCuadro" mat-raised-button color="warn">Eliminar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
+<div>
+  <h1>Lista de sucursales</h1>
+  <div>
+    <button mat-raised-button color="warn" class="botonNuevo" (click)="mostrarAgregarVisible()">Nueva scursal</button>
+  </div>
+  <div *ngIf="agregarVisible">
+    <form (ngSubmit)="guardarNuevo(nuevo)">
+      <mat-card class="formCard editable">
+        <mat-card-content class="card">
+          <h2>Nueva sucursal</h2>
+          <mat-form-field >
+            <mat-label>
+              Dirección
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.direccion"
+            matInput
+            name="nuevo_direccion">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+              Teléfono
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.telefono"
+            matInput
+            name="nuevo_telefono">
+          </mat-form-field>
+          <div>
+            <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
+            <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarAgregarVisible()">Cerrar</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+  <div *ngIf="editarVisible">
+    <form (ngSubmit)="guardarEditado(editable)">
+      <mat-card class="formCard editable">
+        <mat-card-content class="card">
+          <h2>Editar sucursal</h2>
+          <mat-form-field >
+            <mat-label>
+              Dirección
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="editable.direccion"
+            matInput
+            name="editable_direccion">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+              Teléfono
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="editable.telefono"
+            matInput
+            name="editable_telefono">
+          </mat-form-field>
+          <div>
+            <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
+            <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarAgregarVisible()">Cerrar</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+  <div class="contenedorTabla">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Dirección</th>
+          <th>Teléfono</th>
+          <th>Zonas</th>
+          <th>Botones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sucursal of sucursales">
+          <td>{{sucursal.idSucursal}}</td>
+          <td>{{sucursal.direccion}}</td>
+          <td>{{sucursal.telefono}}</td>
+          <td><button class="botonesCuadro" mat-raised-button color="primary" (click)="verMas(sucursal)" routerLink="/listar_zonas" >Ver más</button></td>
+          <td>
+            <button class="botonesCuadro" mat-raised-button color="primary" (click)="mostrarEditarVisible(sucursal)">Editar</button>
+            <button class="botonesCuadro" mat-raised-button color="warn" (click)="eliminar(sucursal)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

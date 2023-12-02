@@ -1,14 +1,14 @@
 <div>
+  <h1>Lista de empleados</h1>
   <div>
     <button mat-raised-button color="warn" class="botonNuevo" (click)="mostrarAgregarVisible()">Nuevo Empleado</button>
   </div>
 
   <div *ngIf="agregarVisible" >
     <form (ngSubmit)="guardarNuevo()">
-      <!-- FALTA LA ASIGNACION DE DEPOSITOS -->
       <mat-card class="formCard editable">
         <mat-card-content class="card">
-          <h2>Nuevo Empleado</h2>
+          <h2>Nuevo empleado</h2>
           <mat-form-field >
             <mat-label>
               Nombre
@@ -80,18 +80,17 @@
             matInput
             name="nuevo_especialidad">
           </mat-form-field>
+          <div>
+            <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
+            <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarAgregarVisible()">Cerrar</button>
+          </div>
         </mat-card-content>
-        <div>
-          <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
-          <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarAgregarVisible()">Cerrar</button>
-        </div>
       </mat-card>
     </form>
   </div>
 
   <div *ngIf="editarVisible">
     <form (ngSubmit)="guardarEditado(editable)">
-      <!-- FALTA LA ASIGNACION DE DEPOSITOS -->
       <mat-card class="formCard editable">
         <mat-card-content class="card">
           <h2>Editar empleado</h2>
@@ -166,11 +165,11 @@
             matInput
             name="editable_especialidad">
           </mat-form-field>
+          <div>
+            <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
+            <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarEditarVisible(editable)">Cerrar</button>
+          </div>
         </mat-card-content>
-        <div>
-          <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
-          <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarEditarVisible(editable)">Cerrar</button>
-        </div>
       </mat-card>
     </form>
   </div>
@@ -203,7 +202,7 @@
           <td>{{objToString(empleado.administrador)}}</td>
           <td>{{empleado.codigo}}</td>
           <td>{{empleado.especialidad}}</td>
-          <td>{{empleado.depositos}}</td>
+          <td><button class="botonesCuadro" mat-raised-button color="primary" (click)="verMas(empleado)" routerLink="/listar_zonas" >Ver más</button></td>
           <td>
             <button class="botonesCuadro" mat-raised-button color="primary" (click)="mostrarEditarVisible(empleado)">Editar</button>
             <button class="botonesCuadro" mat-raised-button color="warn" (click)="eliminar(empleado)">Eliminar</button>

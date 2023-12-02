@@ -61,25 +61,25 @@ export class RegistrarseComponent implements OnInit{
     if(this.checkearInexistencia(this.nuevoCliente)){
       alert("El usuario con el nombre de usuario '"+this.nuevoCliente.nombreUsuario+"' ya existe");
     }
-    else if(this.nuevoCliente.claveUsuario==null){
+    else if(this.nuevoCliente.claveUsuario=="" || this.nuevoCliente.claveUsuario==null){
       alert("El campo 'Clave de usuario' está incompleto");
     }
-    else if(this.nuevoCliente.dni==null){
+    else if(this.nuevoCliente.dni=="" || this.nuevoCliente.cliente==null){
       alert("El campo 'Código' está incompleto");
     }
-    else if(this.nuevoCliente.direccion==null){
+    else if(this.nuevoCliente.direccion=="" || this.nuevoCliente.direccion==null){
       alert("El campo 'Dirección' está incompleto");
     }
-    else if(this.nuevoCliente.mail==null){
+    else if(this.nuevoCliente.mail=="" || this.nuevoCliente.mail==null){
       alert("El campo 'Especialidad' está incompleto");
     }
-    else if(this.nuevoCliente.nombre==null){
+    else if(this.nuevoCliente.nombre=="" || this.nuevoCliente.nombre==null){
       alert("El campo 'Nombre' está incompleto");
     }
-    else if(this.nuevoCliente.nombreUsuario==null){
+    else if(this.nuevoCliente.nombreUsuario=="" || this.nuevoCliente.nombreUsuario==null){
       alert("El campo 'Nombre de usuario' está incompleto");
     }
-    else if(this.nuevoCliente.telefono==null){
+    else if(this.nuevoCliente.telefono=="" || this.nuevoCliente.telefono==null){
       alert("El campo 'Teléfono' está incompleto");
     }
     else {

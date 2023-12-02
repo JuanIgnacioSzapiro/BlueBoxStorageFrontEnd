@@ -1,29 +1,32 @@
-<div class="contenedorTabla">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Fecha de inicio</th>
-        <th>Fecha de terminación</th>
-        <th>ID del cliente</th>
-        <th>ID del depósito</th>
-        <th>Aprobado</th>
-        <th>Botones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let contrato of contratos">
-        <td>{{contrato.idContrato}}</td>
-        <td>{{contrato.fechaInicio}}</td>
-        <td>{{contrato.fechaTerminacion}}</td>
-        <td>{{contrato.idCliente}}</td>
-        <td>{{contrato.idDeposito}}</td>
-        <td>{{contrato.aprobado}}</td>
-        <td>
-          <button class="botonesCuadro" mat-raised-button color="primary">Editar</button>
-          <button class="botonesCuadro" mat-raised-button color="warn">Eliminar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div>
+  <h1>Lista de contratos</h1>
+  <div class="contenedorTabla">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Fecha de inicio</th>
+          <th>Fecha de terminación</th>
+          <th>ID del cliente</th>
+          <th>ID del depósito</th>
+          <th>Aprobado</th>
+          <th>Botones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contrato of contratos">
+          <td>{{contrato.idContrato}}</td>
+          <td>{{contrato.fechaInicio}}</td>
+          <td>{{contrato.fechaTerminacion}}</td>
+          <td>{{contrato.idCliente}}</td>
+          <td>{{contrato.idDeposito}}</td>
+          <td>{{contrato.aprobado}}</td>
+          <td>
+            <button class="botonesCuadro" mat-raised-button color="primary">Editar</button>
+            <button class="botonesCuadro" mat-raised-button color="warn">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

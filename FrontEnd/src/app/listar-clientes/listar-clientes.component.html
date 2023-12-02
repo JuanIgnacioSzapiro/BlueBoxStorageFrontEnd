@@ -1,38 +1,125 @@
+
 <div>
-  
-</div>
-<div class="contenedorTabla">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Dirección</th>
-        <th>Teléfono</th>
-        <th>Nombre de Usuario</th>
-        <th>Clave de Usuario</th>
-        <th>Estado</th>
-        <th>DNI</th>
-        <th>Mail</th>
-        <th>Botones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cliente of clientes">
-        <td>{{cliente.idUsuario}}</td>
-        <td>{{cliente.nombre}}</td>
-        <td>{{cliente.direccion}}</td>
-        <td>{{cliente.telefono}}</td>
-        <td>{{cliente.nombreUsuario}}</td>
-        <td>{{cliente.claveUsuario}}</td>
-        <td>{{objToString(cliente.cliente, cliente.pendiente)}}</td>
-        <td>{{cliente.dni}}</td>
-        <td>{{cliente.mail}}</td>
-        <td>
-          <button class="botonesCuadro" mat-raised-button color="primary">Editar</button>
-          <button class="botonesCuadro" mat-raised-button color="warn">Eliminar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <h1>Lista de clientes</h1>
+  <div *ngIf="editarVisible">
+    <form (ngSubmit)="guardarEditable(editable)">
+      <mat-card class="editable">
+          <mat-card-content class="card">
+            <h2>Editar cliente</h2>
+            <mat-form-field>
+              <mat-label>
+              Nombre
+              </mat-label>
+              <input
+              type="text"
+              [(ngModel)]="editable.nombre"
+              matInput
+              name="editable_nombre">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>
+              Dirección
+              </mat-label>
+              <input
+              type="text"
+              [(ngModel)]="editable.direccion"
+              matInput
+              name="editable_direccion">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>
+              Teléfono
+              </mat-label>
+              <input
+              type="text"
+              [(ngModel)]="editable.telefono"
+              matInput
+              name="editable_telefono">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>
+              Nombre de usuario
+              </mat-label>
+              <input
+              type="text"
+              [(ngModel)]="editable.nombreUsuario"
+              matInput
+              name="editable_nombreUsuario">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>
+              Clave de usuario
+              </mat-label>
+              <input
+              type="password"
+              [(ngModel)]="editable.claveUsuario"
+              matInput
+              name="editable_claveUsuario">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>
+              DNI
+              </mat-label>
+              <input
+              type="text"
+              [(ngModel)]="editable.dni"
+              matInput
+              name="editable_dni">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>
+              Mail
+              </mat-label>
+              <input
+              type="text"
+              [(ngModel)]="editable.mail"
+              matInput
+              name="editable_mail">
+            </mat-form-field>
+            <mat-checkbox [(ngModel)]="editable.pendiente" value="before" color="primary" name="editable_administrador">¿Pendiente?</mat-checkbox>
+          </mat-card-content>
+          <mat-card-actions>
+              <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
+              <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarEditarVisible(editable)">Cerrar</button>
+          </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+  <div class="contenedorTabla">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Dirección</th>
+          <th>Teléfono</th>
+          <th>Nombre de Usuario</th>
+          <th>Clave de Usuario</th>
+          <th>Estado</th>
+          <th>DNI</th>
+          <th>Mail</th>
+          <th>Contratos</th>
+          <th>Botones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{cliente.idUsuario}}</td>
+          <td>{{cliente.nombre}}</td>
+          <td>{{cliente.direccion}}</td>
+          <td>{{cliente.telefono}}</td>
+          <td>{{cliente.nombreUsuario}}</td>
+          <td>{{cliente.claveUsuario}}</td>
+          <td>{{objToString(cliente.cliente, cliente.pendiente)}}</td>
+          <td>{{cliente.dni}}</td>
+          <td>{{cliente.mail}}</td>
+          <td><button class="botonesCuadro" mat-raised-button color="primary" (click)="verMas(cliente)" routerLink="/listar_zonas" >Ver más</button></td>
+          <td>
+            <button class="botonesCuadro" mat-raised-button color="primary" (click)="mostrarEditarVisible(cliente)">Editar</button>
+            <button class="botonesCuadro" mat-raised-button color="warn" (click)="eliminar(cliente)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -1,6 +1,9 @@
 import { ClienteService } from './../cliente/cliente.service';
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../cliente/cliente';
+import { Usuario } from '../usuario/usuario';
+import { Empleado } from '../empleado/empleado';
+import { EmpleadoService } from '../empleado/empleado.service';
 
 @Component({
   selector: 'app-listar-clientes',
@@ -9,11 +12,21 @@ import { Cliente } from '../cliente/cliente';
 })
 export class ListarClientesComponent implements OnInit{
   clientes: Cliente[];
+  editable: Cliente;
+  empleados: Empleado[];
+  editarVisible:boolean;
 
-  constructor(private servicioCliente: ClienteService){}
+  constructor(private servicioCliente: ClienteService, private servicioEmpleado: EmpleadoService){}
 
   ngOnInit(){
+    this.editarVisible=false;
+    this.obtenerEmpleados();
     this.obtenerClientes();
+  }
+
+  private obtenerEmpleados(){
+    this.servicioEmpleado.obetenerTodos().subscribe(dato=>
+      {this.empleados=dato;})
   }
 
   private obtenerClientes(){
@@ -27,5 +40,68 @@ export class ListarClientesComponent implements OnInit{
       str += "PENDIENTE";
     }
     return str;
+  }
+
+  public mostrarEditarVisible(x: Cliente){
+    if(this.editarVisible==false){
+      this.editable=JSON.parse(JSON.stringify(x));
+    }
+    this.editarVisible=!this.editarVisible
+  }
+
+  public checkearInexistencia(x: Usuario){
+    for(let clienteBuscado of this.clientes){
+      if(clienteBuscado.nombreUsuario==x.nombreUsuario && clienteBuscado.idUsuario != x.idUsuario){
+        return true;
+      }
+    }
+    for(let empleadoBuscado of this.empleados){
+      if(empleadoBuscado.nombreUsuario==x.nombreUsuario && empleadoBuscado.idUsuario != x.idUsuario){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public guardarEditable(x: Cliente){
+    if(this.checkearInexistencia(x)){
+      alert("El usuario con el nombre de usuario '"+x.nombreUsuario+"' ya existe");
+    }
+    else if(x.claveUsuario=="" || x.claveUsuario==null){
+      alert("El campo 'Clave de usuario' está incompleto");
+    }
+    else if(x.dni=="" || x.dni==null){
+      alert("El campo 'Código' está incompleto");
+    }
+    else if(x.direccion=="" || x.direccion==null){
+      alert("El campo 'Dirección' está incompleto");
+    }
+    else if(x.mail=="" || x.mail==null){
+      alert("El campo 'Especialidad' está incompleto");
+    }
+    else if(x.nombre=="" || x.nombre==null){
+      alert("El campo 'Nombre' está incompleto");
+    }
+    else if(x.nombreUsuario=="" || x.nombreUsuario==null){
+      alert("El campo 'Nombre de usuario' está incompleto");
+    }
+    else if(x.telefono=="" || x.telefono==null){
+      alert("El campo 'Teléfono' está incompleto");
+    }
+    else {
+      this.servicioCliente.modificar(x).subscribe(dato=>{
+        this.ngOnInit();
+      },error=>console.log(error));
+    }
+  }
+
+  public eliminar(x: Cliente){
+    this.servicioCliente.eliminar(x).subscribe(dato=>{
+      this.ngOnInit();
+    });
+  }
+
+  public verMas(x: Cliente){
+
   }
 }

@@ -1,25 +1,97 @@
-<div class="contenedorTabla">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Letra</th>
-        <th>Tipo</th>
-        <th>Depósitos</th>
-        <th>Botones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let zona of zonas">
-        <td>{{zona.idZona}}</td>
-        <td>{{zona.letra}}</td>
-        <td>{{zona.tipo}}</td>
-        <td>{{zona.deposito}}</td>
-        <td>
-          <button class="botonesCuadro" mat-raised-button color="primary">Editar</button>
-          <button class="botonesCuadro" mat-raised-button color="warn">Eliminar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div *ngIf="agregarVisible">
+  <form (ngSubmit)="guardarNuevo()">
+    <mat-card class="formCard editable">
+      <mat-card-content class="card">
+          <h2>Nueva zona</h2>
+          <mat-form-field >
+            <mat-label>
+              Letra
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.letra"
+            matInput
+            name="nuevo_letra">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+              Tipo
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.tipo"
+            matInput
+            name="nuevo_tipo">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
+            <button class="botonesCuadro botonBlanco" mat-button (click)="mostrarAgregarVisible()">Cerrar</button>
+        </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
+<div *ngIf="editarVisible">
+  <form (ngSubmit)="guardarEditado(editable)">
+    <mat-card class="formCard editable">
+      <mat-card-content class="card">
+          <h2>Editar zona</h2>
+          <mat-form-field >
+            <mat-label>
+              Letra
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="editable.letra"
+            matInput
+            name="editable_letra">
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>
+              Tipo
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="editable.tipo"
+            matInput
+            name="editable_tipo">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
+            <button class="botonesCuadro botonBlanco" mat-button (click)="mostrarAgregarVisible()">Cerrar</button>
+        </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
+<div>
+  <h1>Lista de zonas</h1>
+  <div *ngIf="botonNuevo">
+    <button mat-raised-button color="warn" class="botonNuevo" (click)="mostrarAgregarVisible()">Nueva zona</button>
+  </div>
+  <div class="contenedorTabla">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Letra</th>
+          <th>Tipo</th>
+          <th>Depósitos</th>
+          <th>Botones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let zona of zonas">
+          <td>{{zona.idZona}}</td>
+          <td>{{zona.letra}}</td>
+          <td>{{zona.tipo}}</td>
+          <td><button class="botonesCuadro" mat-raised-button color="primary" (click)="verMas(zona)" routerLink="/listar_zonas" >Ver más</button></td>
+          <td>
+            <button class="botonesCuadro" mat-raised-button color="primary" (click)="mostrarEditarVisible(zona)">Editar</button>
+            <button class="botonesCuadro" mat-raised-button color="warn" (click)="eliminar(zona)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

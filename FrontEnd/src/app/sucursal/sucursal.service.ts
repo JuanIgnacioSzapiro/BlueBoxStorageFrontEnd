@@ -18,21 +18,16 @@ export class SucursalService {
   }
 
   /** POST: add a new hero to the database */
-  agregar(sucursal: Sucursal): Observable<Sucursal> {
-    return this.http.post<Sucursal>(this.listaURL, sucursal)
-      .pipe(
-        catchError(this.handleError('agregar', sucursal))
-      );
-  }
-  handleError(arg0: string, hero: any): (err: any, caught: Observable<Sucursal>) => import("rxjs").ObservableInput<any> {
-    throw new Error('Method not implemented.');
+  public agregar(sucursal: Sucursal): Observable<Sucursal> {
+    return this.http.post<Sucursal>(this.listaURL, sucursal);
   }
 
   /** PUT: update the hero on the server. Returns the updated hero upon success. */
-  modificar(sucursal: Sucursal): Observable<Sucursal>{
-    return this.http.put<Sucursal>(this.listaURL, sucursal)
-      .pipe(
-        catchError(this.handleError('updateHero', sucursal))
-      );
+  public modificar(sucursal: Sucursal): Observable<Sucursal>{
+    return this.http.put<Sucursal>(this.listaURL+'/'+sucursal.idSucursal, sucursal);
+  }
+  /** DELETE: delete the hero from the server */
+  public eliminar(sucursal: Sucursal): Observable<Object>{
+    return this.http.delete(this.listaURL+'/'+sucursal.idSucursal);
   }
 }
