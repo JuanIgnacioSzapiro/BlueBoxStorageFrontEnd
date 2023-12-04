@@ -19,8 +19,8 @@ export class ZonaService {
   }
 
   /** POST: add a new hero to the database */
-  public agregar(zona: Zona): Observable<Zona> {
-    return this.http.post<Zona>(this.listaURL, zona);
+  public agregar(idSucursal: number, zona: Zona): Observable<Zona> {
+    return this.http.post<Zona>(this.listaURL+'/'+idSucursal, zona);
   }
 
   /** PUT: update the hero on the server. Returns the updated hero upon success. */

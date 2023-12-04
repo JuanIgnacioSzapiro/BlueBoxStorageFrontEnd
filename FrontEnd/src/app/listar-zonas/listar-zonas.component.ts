@@ -23,18 +23,20 @@ export class ListarZonasComponent implements OnInit{
 
   botonNuevo: Boolean;
 
+  idSucursal: any;
+
   constructor(private servicio: ZonaService){  }
 
   ngOnInit(){
-    let x: any = Number(window.location.toString().slice(window.location.toString().lastIndexOf('/')+1));
+    this.idSucursal = Number(window.location.toString().slice(window.location.toString().lastIndexOf('/')+1));
 
     this.agregarVisible=false;
     this.editarVisible=false;
 
-    if (!Number.isNaN(x)){
+    if (!Number.isNaN(this.idSucursal)){
       this.botonNuevo=true;
 
-      this.obtenerDeSucursal(x);
+      this.obtenerDeSucursal(this.idSucursal);
     }
     else{
       this.botonNuevo=false;
@@ -76,7 +78,7 @@ export class ListarZonasComponent implements OnInit{
       alert("El campo 'tipo' está incompleto");
     }
     else{
-      this.servicio.agregar(this.nuevo).subscribe(dato=>{
+      this.servicio.agregar(this.idSucursal, this.nuevo).subscribe(dato=>{
         this.ngOnInit();
       },error=>console.log(error));
     }

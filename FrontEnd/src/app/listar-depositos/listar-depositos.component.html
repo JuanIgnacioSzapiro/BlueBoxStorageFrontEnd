@@ -1,95 +1,95 @@
 <div>
-  <button mat-raised-button color="warn" class="botonNuevo" (click)="mostrarAgregarVisible()">Nuevo depósito</button>
-</div>
-<div *ngIf="agregarVisible">
-  <form (ngSubmit)="guardarNuevo()">
-    <mat-card class="formCard editable">
-      <mat-card-content class="card">
-        <h2>Nuevo deposito</h2>
-          <mat-form-field >
-            <mat-label>
-              Número
-            </mat-label>
-            <input
-            type="text"
-            [(ngModel)]="nuevo.numero"
-            matInput
-            name="nuevo_numero">
-          </mat-form-field>
-          <mat-form-field >
-            <mat-label>
-              Volumen
-            </mat-label>
-            <input
-            type="text"
-            [(ngModel)]="nuevo.volumen"
-            matInput
-            name="nuevo_volumen">
-          </mat-form-field>
-          <mat-card-actions>
-            <button class="botonesCuadro" mat-raised-button color="primary"  type="submit">Guardar</button>
-            <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarAgregarVisible()">Cerrar</button>
-        </mat-card-actions>
-      </mat-card-content>
-    </mat-card>
-  </form>
-</div>
-<div *ngIf="editarVisible">
-  <form (ngSubmit)="guardarEditado(editable)">
-    <mat-card class="formCard editable">
-      <mat-card-content class="card">
-        <h2>Editar deposito</h2>
-          <mat-form-field >
-            <mat-label>
-              Número
-            </mat-label>
-            <input
-            type="text"
-            [(ngModel)]="editable.numero"
-            matInput
-            name="editable_numero">
-          </mat-form-field>
-          <mat-form-field >
-            <mat-label>
-              Volumen
-            </mat-label>
-            <input
-            type="text"
-            [(ngModel)]="editable.volumen"
-            matInput
-            name="editable_volumen">
-          </mat-form-field>
-          <mat-card-actions>
-            <button class="botonesCuadro" mat-raised-button color="primary"  type="submit">Guardar</button>
-            <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarEditarVisible(editable)">Cerrar</button>
-        </mat-card-actions>
-      </mat-card-content>
-    </mat-card>
-  </form>
-</div>
-<div>
   <h1>Lista de depósitos</h1>
-  <div class="contenedorTabla">
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Número</th>
-          <th>Volumen</th>
-          <th>Botones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let deposito of depositos">
-          <td>{{deposito.idDeposito}}</td>
-          <td>{{deposito.numero}}</td>
-          <td>{{deposito.volumen}}</td>
-          <td>
-            <button class="botonesCuadro" mat-raised-button color="primary" (click)="mostrarEditarVisible(deposito)">Editar</button>
-            <button class="botonesCuadro" mat-raised-button color="warn" (click)="eliminar(deposito)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <button mat-raised-button color="warn" class="botonNuevo" (click)="mostrarAgregarVisible()">Nuevo depósito</button>
+  <div *ngIf="agregarVisible">
+    <form (ngSubmit)="guardarNuevo()">
+      <mat-card class="formCard editable">
+        <mat-card-content class="card">
+          <h2>Nuevo deposito</h2>
+            <mat-form-field >
+              <mat-label>
+                Número
+              </mat-label>
+              <input
+              type="text"
+              [(ngModel)]="nuevo.numero"
+              matInput
+              name="nuevo_numero">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>
+                Volumen
+              </mat-label>
+              <input
+              type="text"
+              [(ngModel)]="nuevo.volumen"
+              matInput
+              name="nuevo_volumen">
+            </mat-form-field>
+            <mat-card-actions>
+              <button class="botonesCuadro" mat-raised-button color="primary"  type="submit">Guardar</button>
+              <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarAgregarVisible()">Cerrar</button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+  <div *ngIf="editarVisible">
+    <form (ngSubmit)="guardarEditado(editable)">
+      <mat-card class="formCard editable">
+        <mat-card-content class="card">
+          <h2>Editar deposito</h2>
+            <mat-form-field >
+              <mat-label>
+                Número
+              </mat-label>
+              <input
+              type="text"
+              [(ngModel)]="editable.numero"
+              matInput
+              name="editable_numero">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>
+                Volumen
+              </mat-label>
+              <input
+              type="text"
+              [(ngModel)]="editable.volumen"
+              matInput
+              name="editable_volumen">
+            </mat-form-field>
+            <mat-card-actions>
+              <button class="botonesCuadro" mat-raised-button color="primary"  type="submit">Guardar</button>
+              <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarEditarVisible(editable)">Cerrar</button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+  <div>
+    <div class="contenedorTabla">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Número</th>
+            <th>Volumen</th>
+            <th>Botones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let deposito of depositos">
+            <td>{{deposito.idDeposito}}</td>
+            <td>{{deposito.numero}}</td>
+            <td>{{deposito.volumen}}</td>
+            <td>
+              <button class="botonesCuadro" mat-raised-button color="primary" (click)="mostrarEditarVisible(deposito)">Editar</button>
+              <button class="botonesCuadro" mat-raised-button color="warn" (click)="eliminar(deposito)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
