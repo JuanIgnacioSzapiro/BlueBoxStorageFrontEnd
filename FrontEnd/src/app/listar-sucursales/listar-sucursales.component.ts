@@ -1,5 +1,5 @@
+import { SucursalService } from './../sucursal/sucursal.service';
 import { Router, RouterLink, RouterLinkWithHref, Routes } from '@angular/router';
-import { SucursalService } from '../sucursal/sucursal.service';
 import { Sucursal } from './../sucursal/sucursal';
 import { Component } from '@angular/core';
 import { ListarZonasComponent } from '../listar-zonas/listar-zonas.component';
@@ -33,6 +33,7 @@ export class ListarSucursalesComponent {
   public mostrarAgregarVisible(){
     this.agregarVisible=!this.agregarVisible;
   }
+
   public mostrarEditarVisible(x: Sucursal){
     if(this.editarVisible==false){
       this.editable=JSON.parse(JSON.stringify(x));

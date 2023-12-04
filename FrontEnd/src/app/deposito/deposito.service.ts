@@ -18,8 +18,8 @@ export class DepositoService {
   }
 
   /** POST: add a new hero to the database */
-  public agregar(deposito: Deposito): Observable<Deposito> {
-    return this.http.post<Deposito>(this.listaURL, deposito);
+  public agregar(idZona: number, deposito: Deposito): Observable<Deposito> {
+    return this.http.post<Deposito>(this.listaURL+'/'+idZona, deposito);
   }
 
   /** PUT: update the hero on the server. Returns the updated hero upon success. */
@@ -31,7 +31,7 @@ export class DepositoService {
     return this.http.delete(this.listaURL+'/'+deposito.idDeposito);
   }
 
-  // obetenerTodos():Observable<Deposito[]>{
-  //   return this.http.get<Deposito[]>(this.listaURL+'/'+);
-  // }
+  public obetenerZonasDeSucursal(x: any):Observable<Deposito[]>{
+    return this.http.get<Deposito[]>(this.listaURL+'/'+Number(x));
+  }
 }

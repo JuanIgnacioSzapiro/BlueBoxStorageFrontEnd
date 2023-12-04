@@ -1,9 +1,10 @@
+import { SucursalService } from './../sucursal/sucursal.service';
 import { Component, OnInit } from '@angular/core';
 import { Zona } from '../zona/zona';
 import { ZonaService } from '../zona/zona.service';
 import { Sucursal } from '../sucursal/sucursal';
 import { Deposito } from '../deposito/deposito';
-import { SucursalService } from '../sucursal/sucursal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-zonas',
@@ -19,21 +20,25 @@ export class ListarZonasComponent implements OnInit{
   agregarVisible: Boolean;
   editarVisible: Boolean;
 
-  sucursales: Sucursal[];
-
   botonNuevo: Boolean;
 
   idSucursal: any;
 
-  constructor(private servicio: ZonaService){  }
+  sucursales: Sucursal[];
+
+  constructor(private servicio: ZonaService, private ruta: Router, private servicioSucursal: SucursalService){  }
 
   ngOnInit(){
+    this.obtenerSucursales();
+
+    this.sucursales = [];
+
     this.idSucursal = Number(window.location.toString().slice(window.location.toString().lastIndexOf('/')+1));
 
     this.agregarVisible=false;
     this.editarVisible=false;
 
-    if (!Number.isNaN(this.idSucursal)){
+    if (!(Number.isNaN(this.idSucursal)) && this.checkearExistenciaSucursal()){
       this.botonNuevo=true;
 
       this.obtenerDeSucursal(this.idSucursal);
@@ -43,6 +48,20 @@ export class ListarZonasComponent implements OnInit{
 
       this.obtenerTodo();
     }
+  }
+
+  public checkearExistenciaSucursal(){
+    for(let sucursal of this.sucursales){
+      if(sucursal.idSucursal==this.idSucursal){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public obtenerSucursales(){
+    this.servicioSucursal.obetenerTodos().subscribe(dato=>
+      {this.sucursales=dato;})
   }
 
   public obtenerDeSucursal(x: Sucursal){
@@ -63,7 +82,11 @@ export class ListarZonasComponent implements OnInit{
   }
 
   public checkearInexistencia(x: Zona){
-
+    for(let zona of this.zonas){
+      if(zona.letra==x.letra && zona.idZona!=x.idZona){
+        return true;
+      }
+    }
     return false;
   }
 
@@ -115,6 +138,6 @@ export class ListarZonasComponent implements OnInit{
   }
 
   public verMas(x: Zona){
-
+    this.ruta.navigate(['/listar_depositos', x.idZona]);
   }
 }

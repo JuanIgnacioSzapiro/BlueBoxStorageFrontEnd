@@ -1,6 +1,8 @@
 <div>
   <h1>Lista de depósitos</h1>
-  <button mat-raised-button color="warn" class="botonNuevo" (click)="mostrarAgregarVisible()">Nuevo depósito</button>
+  <div *ngIf="botonNuevo">
+    <button mat-raised-button color="warn" class="botonNuevo" (click)="mostrarAgregarVisible()">Nuevo depósito</button>
+  </div>
   <div *ngIf="agregarVisible">
     <form (ngSubmit)="guardarNuevo()">
       <mat-card class="formCard editable">
