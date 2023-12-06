@@ -11,15 +11,15 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  private listaURL = 'http://localhost:8080/usuarios';
+  private listaURL = 'http://localhost:8080/usuario';
 
   private loginURL = 'http://localhost:8080/login';
 
-  public login(usuario: Usuario):Observable<object>{
+  public login(usuario: Usuario): Observable<object>{
     return this.http.post(this.loginURL, usuario);
   }
 
-  public obetenerTodos():Observable<Usuario[]>{
-    return this.http.get<Usuario[]>(this.listaURL);
+  public obtener(usuario: Usuario): Observable<object>{
+    return this.http.post(this.listaURL, usuario);
   }
 }

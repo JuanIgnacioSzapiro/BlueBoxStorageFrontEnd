@@ -1,15 +1,14 @@
 import { SucursalService } from './../sucursal/sucursal.service';
-import { Router, RouterLink, RouterLinkWithHref, Routes } from '@angular/router';
+import { Router } from '@angular/router';
 import { Sucursal } from './../sucursal/sucursal';
-import { Component } from '@angular/core';
-import { ListarZonasComponent } from '../listar-zonas/listar-zonas.component';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-listar-sucursales',
   templateUrl: './listar-sucursales.component.html',
   styleUrls: ['./listar-sucursales.component.css', '../app.component.css']
 })
-export class ListarSucursalesComponent {
+export class ListarSucursalesComponent implements OnInit{
   sucursales: Sucursal[];
   editable: Sucursal;
   nuevo = new Sucursal;

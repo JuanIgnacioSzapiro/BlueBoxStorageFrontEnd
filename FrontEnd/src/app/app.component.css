@@ -24,15 +24,9 @@ mat-drawer-content{
   max-width: 90%;
 
   position: absolute;
-  top: 15vh;
+  top: 10rem;
   left: 5%;
   right: 5%;
-}
-
-@media (max-height: 600px) {
-  .contenedorTabla{
-    top: 30vh;
-  }
 }
 
 table {

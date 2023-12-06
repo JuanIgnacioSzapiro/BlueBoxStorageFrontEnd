@@ -36,23 +36,26 @@ import { ListarMisContratosModule } from './listar-mis-contratos/listar-mis-cont
 import { ListarMisDepositosModule } from './listar-mis-depositos/listar-mis-depositos.module';
 
 const appRoutes: Routes = [
-  {path: 'listar_mis_contratos', component: ListarMisContratosComponent},
-  {path: 'listar_mis_depositos', component: ListarMisDepositosComponent},
+
+  {path: ':rol/listar_mis_contratos', component: ListarMisContratosComponent},
+  {path: ':rol/listar_mis_depositos', component: ListarMisDepositosComponent},
 
   // {path: 'listar_usuarios', component: ListarUsuariosComponent},
-  {path: 'listar_clientes', component: ListarClientesComponent},
-  {path: 'listar_empleados', component: ListarEmpleadosComponent},
+  {path: ':rol/listar_clientes', component: ListarClientesComponent},
+  {path: ':rol/listar_empleados', component: ListarEmpleadosComponent},
 
-  {path: 'listar_contratos', component: ListarContratosComponent},
-  {path: 'listar_contratos/:id', component: ListarContratosComponent},
+  {path: ':rol/listar_contratos', component: ListarContratosComponent},
+  {path: ':rol/listar_contratos/:id', component: ListarContratosComponent},
 
-  {path: 'listar_depositos', component: ListarDepositosComponent},
-  {path: 'listar_depositos/:id', component: ListarDepositosComponent},
-  {path: 'listar_zonas', component: ListarZonasComponent},
-  {path: 'listar_zonas/:id', component: ListarZonasComponent},
-  {path: 'listar_sucursales', component: ListarSucursalesComponent},
-  {path: 'listar_sucursales/:id', component: ListarSucursalesComponent},
+  {path: ':rol/listar_depositos', component: ListarDepositosComponent},
+  {path: ':rol/listar_depositos/:id', component: ListarDepositosComponent},
+  {path: ':rol/listar_zonas', component: ListarZonasComponent},
+  {path: ':rol/listar_zonas/:id', component: ListarZonasComponent},
+  {path: ':rol/listar_sucursales', component: ListarSucursalesComponent},
+  {path: ':rol/listar_sucursales/:id', component: ListarSucursalesComponent},
+
   {path: 'registrarse', component: RegistrarseComponent},
+
 ];
 
 @NgModule({
