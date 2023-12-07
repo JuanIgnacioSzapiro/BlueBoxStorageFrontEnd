@@ -1,8 +1,8 @@
-import { BarraLateralComponent } from './../barra-lateral/barra-lateral.component';
 import { AppComponent } from './../app.component';
 import { UsuarioService } from './../usuario/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../usuario/usuario';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,21 +13,42 @@ import { Usuario } from '../usuario/usuario';
 export class LoginComponent implements OnInit{
   usuario:Usuario = new Usuario();
 
-  constructor(private usuarioService: UsuarioService, private appComponent: AppComponent) {}
+
+
+  constructor(private usuarioService: UsuarioService, private appComponent: AppComponent, private ruta: Router) {}
 
   ngOnInit() {
+    sessionStorage.setItem("", "")
+    if(sessionStorage.length!=0){
+      sessionStorage.clear()
+      // window.location.reload()
+    }
   }
 
   usuarioLogin(){
     this.usuarioService.login(this.usuario).subscribe(data=>{
       this.obtener();
-      this.appComponent.logueado();
-    },error=>alert("Falló"));
+    },error=>alert("Nombre de usuario o contraseña incorrecta"));
   }
 
   public obtener(){
     this.usuarioService.obtener(this.usuario).subscribe(x=>{
-      localStorage.setItem("usuarioLogueado", JSON.stringify(x));
+      var rol: any;
+
+      if(JSON.stringify(x).includes('"administrador":true')){
+        rol = "administrador"
+      }
+      else if(JSON.stringify(x).includes('"empleado":true')){
+        rol = "empleado"
+      }
+      else if(JSON.stringify(x).includes('"cliente":true')){
+        rol = "cliente"
+      }
+      else if(JSON.stringify(x).includes('"pendiente":true')){
+        rol = "pendiente"
+      }
+
+      this.ruta.navigate([rol]);
     })
   }
 

@@ -8,7 +8,6 @@ import { LoginModule } from './login/login.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ListarEmpleadosModule } from './listar-empleados/listar-empleados.module';
 import { Route, RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 import { ListarEmpleadosComponent } from './listar-empleados/listar-empleados.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -20,8 +19,6 @@ import { ListarContratosComponent } from './listar-contratos/listar-contratos.co
 import { ListarDepositosComponent } from './listar-depositos/listar-depositos.component';
 import { ListarSucursalesComponent } from './listar-sucursales/listar-sucursales.component';
 import { ListarZonasComponent } from './listar-zonas/listar-zonas.component';
-import { ListarUsuariosComponent } from './listar-usuarios/listar-usuarios.component';
-import { BarraLateralComponent } from './barra-lateral/barra-lateral.component';
 import { ListarUsuariosModule } from './listar-usuarios/listar-usuarios.module';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { RegistrarseModule } from './registrarse/registrarse.module';
@@ -34,8 +31,11 @@ import { ListarMisContratosComponent } from './listar-mis-contratos/listar-mis-c
 import { ListarMisDepositosComponent } from './listar-mis-depositos/listar-mis-depositos.component';
 import { ListarMisContratosModule } from './listar-mis-contratos/listar-mis-contratos.module';
 import { ListarMisDepositosModule } from './listar-mis-depositos/listar-mis-depositos.module';
+import { BarraLateralComponent } from './barra-lateral/barra-lateral.component';
+import { BarraLateralModule } from './barra-lateral/barra-lateral.module';
 
 const appRoutes: Routes = [
+  {path: ':rol', component: BarraLateralComponent},
 
   {path: ':rol/listar_mis_contratos', component: ListarMisContratosComponent},
   {path: ':rol/listar_mis_depositos', component: ListarMisDepositosComponent},
@@ -55,18 +55,18 @@ const appRoutes: Routes = [
   {path: ':rol/listar_sucursales/:id', component: ListarSucursalesComponent},
 
   {path: 'registrarse', component: RegistrarseComponent},
-
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    BarraLateralComponent,
+
    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
 
+    BarraLateralModule,
     MatSidenavModule,
     MatListModule,
     MatCardModule,

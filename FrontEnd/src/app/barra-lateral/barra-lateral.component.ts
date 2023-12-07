@@ -1,9 +1,11 @@
+import { LoginComponent } from './../login/login.component';
 import { Router } from '@angular/router';
 import { ListarZonasComponent } from './../listar-zonas/listar-zonas.component';
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { LoginComponent } from '../login/login.component';
 import { Cliente } from '../cliente/cliente';
+import { ɵparseCookieValue } from '@angular/common';
+import { UsuarioService } from '../usuario/usuario.service';
 
 @Component({
   selector: 'app-barra-lateral',
@@ -15,44 +17,30 @@ export class BarraLateralComponent implements OnInit{
 
   rol: String;
 
-  constructor(private ruta: Router){
-  }
+  usuario:any
 
-  ngOnInit(){
-    this.determinarRol();
+  constructor(private ruta: Router, private loginComponent: LoginComponent){
+  }
+  
+  ngOnInit(): void {
+    console.log();
 
     this.sideBarItems={
       nombreYredireccionamiento: [
-        ['Listar mis contratos', this.listar_mis_contratos(), this.rol+'/listar_mis_contratos'],
-        ['Listar mis depositos', this.listar_mis_depositos(), this.rol+'/listar_mis_depositos'],
+        ['Listar mis contratos', this.listar_mis_contratos(), this.rol+'/listar_mis_contratos', true],
+        ['Listar mis depositos', this.listar_mis_depositos(), this.rol+'/listar_mis_depositos', true],
 
-        ['Listar clientes', this.listar_clientes(), this.rol+'/listar_clientes'],
-        ['Listar empleados', this.listar_empleados(), this.rol+'/listar_empleados'],
+        ['Listar clientes', this.listar_clientes(), this.rol+'/listar_clientes', true],
+        ['Listar empleados', this.listar_empleados(), this.rol+'/listar_empleados', true],
 
-        ['Listar contratos', this.listar_contratos(), this.rol+'/listar_contratos'],
+        ['Listar contratos', this.listar_contratos(), this.rol+'/listar_contratos', true],
 
-        ['Listar sucursales', this.listar_sucursales(), this.rol+'/listar_sucursales'],
-        ['Listar zonas', this.listar_zonas(), this.rol+'/listar_zonas'],
-        ['Listar depóstios', this.listar_depositos(), this.rol+'/listar_depositos'],
+        ['Listar sucursales', this.listar_sucursales(), this.rol+'/listar_sucursales', true],
+        ['Listar zonas', this.listar_zonas(), this.rol+'/listar_zonas', true],
+        ['Listar depóstios', this.listar_depositos(), this.rol+'/listar_depositos', true],
 
       ]
     }
-  }
-
-  public determinarRol(){
-    if(localStorage.getItem("usuarioLogueado")?.includes('"administrador":true')){
-      this.rol = "administrador";
-    }
-    else if(localStorage.getItem("usuarioLogueado")?.includes('"empleado":true')){
-      this.rol = "empleado";
-    }
-    else if(localStorage.getItem("usuarioLogueado")?.includes('"pendiente":true')){
-      this.rol = "pendiente";
-    }
-    else if(localStorage.getItem("usuarioLogueado")?.includes('"cliente":true')){
-      this.rol = "cliente";
-    }
-    return this.rol;
   }
 
   public listar_mis_contratos(){
