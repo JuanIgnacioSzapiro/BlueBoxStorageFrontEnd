@@ -35,7 +35,7 @@ import { BarraLateralComponent } from './barra-lateral/barra-lateral.component';
 import { BarraLateralModule } from './barra-lateral/barra-lateral.module';
 
 const appRoutes: Routes = [
-  {path: ':rol', component: BarraLateralComponent},
+  // {path: ':rol', component: BarraLateralComponent},
 
   {path: ':rol/listar_mis_contratos', component: ListarMisContratosComponent},
   {path: ':rol/listar_mis_depositos', component: ListarMisDepositosComponent},
@@ -60,13 +60,12 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-
+    BarraLateralComponent
    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
 
-    BarraLateralModule,
     MatSidenavModule,
     MatListModule,
     MatCardModule,
