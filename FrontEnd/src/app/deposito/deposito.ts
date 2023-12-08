@@ -1,5 +1,5 @@
 export class Deposito {
-    idDeposito:number;
-    volumen:number;
-    numero:number;
+    idDeposito:Number;
+    volumen:Number;
+    numero:Number;
 }

@@ -20,48 +20,46 @@ export class ListarZonasComponent implements OnInit{
   agregarVisible: Boolean;
   editarVisible: Boolean;
 
+  existeSucursal:Boolean
+
   botonNuevo: Boolean;
 
   idSucursal: any;
 
-  sucursales: Sucursal[];
+  rol:String;
 
   constructor(private servicio: ZonaService, private ruta: Router, private servicioSucursal: SucursalService){  }
 
   ngOnInit(){
-    this.obtenerSucursales();
-
-    this.sucursales = [];
-
     this.idSucursal = Number(window.location.toString().slice(window.location.toString().lastIndexOf('/')+1));
 
     this.agregarVisible=false;
     this.editarVisible=false;
 
-    if (!(Number.isNaN(this.idSucursal)) && this.checkearExistenciaSucursal()){
-      this.botonNuevo=true;
+    this.existeSucursal= false;
 
-      this.obtenerDeSucursal(this.idSucursal);
-    }
-    else{
-      this.botonNuevo=false;
-
-      this.obtenerTodo();
-    }
+    this.checkearExistenciaSucursal();
   }
 
   public checkearExistenciaSucursal(){
-    for(let sucursal of this.sucursales){
-      if(sucursal.idSucursal==this.idSucursal){
-        return true;
+    this.servicioSucursal.obetenerTodos().subscribe(dato=>{
+      for(let sucursal of dato){
+        if(sucursal.idSucursal==this.idSucursal){
+          this.existeSucursal= true;
+        }
       }
-    }
-    return false;
-  }
 
-  public obtenerSucursales(){
-    this.servicioSucursal.obetenerTodos().subscribe(dato=>
-      {this.sucursales=dato;})
+      if (!(Number.isNaN(this.idSucursal)) && this.existeSucursal){
+        this.botonNuevo=true;
+
+        this.obtenerDeSucursal(this.idSucursal);
+      }
+      else{
+        this.botonNuevo=false;
+
+        this.obtenerTodo();
+      }
+    })
   }
 
   public obtenerDeSucursal(x: Sucursal){
@@ -137,7 +135,11 @@ export class ListarZonasComponent implements OnInit{
     });
   }
 
+  public obtenerRol(){
+    return localStorage.getItem("0");
+  }
+
   public verMas(x: Zona){
-    this.ruta.navigate(['/listar_depositos', x.idZona]);
+    this.ruta.navigate([this.obtenerRol(),'listar_depositos', x.idZona]);
   }
 }

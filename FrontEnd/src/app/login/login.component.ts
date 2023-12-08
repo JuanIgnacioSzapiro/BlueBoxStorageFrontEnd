@@ -24,15 +24,26 @@ export class LoginComponent implements OnInit{
   }
 
   public obtener(){
-    console.log(localStorage.length);
-
-
     if(localStorage.length!=0){
       localStorage.clear()
     }
 
     this.usuarioService.obtener(this.usuario).subscribe(x=>{
-      localStorage.setItem("usuarioLogueado", JSON.stringify(x));
+      let string = JSON.stringify(x);
+
+      if(string?.includes('"administrador":true')){
+        localStorage.setItem("0", "administrador");
+      }
+      else if(string?.includes('"empleado":true')){
+        localStorage.setItem("0", "empleado");
+      }
+      else if(string?.includes('"pendiente":true')){
+        localStorage.setItem("0", "pendiente");
+      }
+      else if(string?.includes('"cliente":true')){
+        localStorage.setItem("0", "cliente");
+      }
+
       this.appComponent.logueado();
     })
 

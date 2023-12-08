@@ -83,10 +83,10 @@ export class ListarDepositosComponent {
     else if(this.nuevo.volumen==null){
       alert("El campo 'volumen' está incompleto");
     }
-    else if(!Number.isNaN(this.nuevo.numero)){
+    else if(Number.isNaN(this.nuevo.numero)){
       alert("El campo 'número' debe ser un número");
     }
-    else if(!Number.isNaN(this.nuevo.volumen)){
+    else if(Number.isNaN(this.nuevo.volumen)){
       alert("El campo 'volumen' debe ser un número");
     }
     else{
@@ -97,19 +97,19 @@ export class ListarDepositosComponent {
   }
 
   public guardarEditado(x: Deposito){
-    if(this.checkearInexistencia(this.nuevo)){
+    if(this.checkearInexistencia(x)){
       alert("El depósito con el número '"+x.numero+"' ya existe en la sucursal y la zona");
     }
-    else if(this.nuevo.numero==null){
+    else if(x.numero==null){
       alert("El campo 'número' está incompleto");
     }
-    else if(this.nuevo.volumen==null){
+    else if(x.volumen==null){
       alert("El campo 'volumen' está incompleto");
     }
-    else if(!Number.isNaN(this.nuevo.numero)){
+    else if(Number.isNaN(x.numero)){
       alert("El campo 'número' debe ser un número");
     }
-    else if(!Number.isNaN(this.nuevo.volumen)){
+    else if(Number.isNaN(x.volumen)){
       alert("El campo 'volumen' debe ser un número");
     }
     else{

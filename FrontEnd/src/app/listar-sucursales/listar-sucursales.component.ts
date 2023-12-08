@@ -89,7 +89,11 @@ export class ListarSucursalesComponent implements OnInit{
     });
   }
 
+  public obtenerRol(){
+    return localStorage.getItem("0");
+  }
+
   public verMas(x: Sucursal){
-    this.ruta.navigate(['/listar_zonas', x.idSucursal]);
+    this.ruta.navigate([this.obtenerRol(), 'listar_zonas', x.idSucursal]);
   }
 }
