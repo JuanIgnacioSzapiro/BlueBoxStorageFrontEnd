@@ -4,5 +4,5 @@ export class Sucursal {
     idSucursal!:number;
     direccion!:string;
     telefono!:string;
-    zonas!:Set<Zona>;
+    zonas: Zona[];
 }

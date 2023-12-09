@@ -1,0 +1,63 @@
+h1{
+  text-align: center;
+
+  font-weight: bold;
+}
+
+.contenedorTabla{
+  max-width: 90%;
+
+  display: table;
+  margin-right: auto;
+  margin-left: auto;
+
+  font-size: medium;
+
+  text-align: center;
+}
+
+ul{
+  list-style-type: none;
+}
+
+table{
+  width: 100%;
+}
+
+td, th{
+  vertical-align: text-top;
+}
+
+.sucursales{
+  border-bottom: 3px solid #000000;
+
+  max-width: max-content;
+}
+
+.zonas{
+  border-bottom: 1px solid #1d1d1d;
+
+  max-width: max-content;
+}
+
+.zonasPintadas:nth-child(odd){
+  background-color: rgb(225, 225, 248);
+}
+
+.depositosPintados:nth-child(odd){
+  background-color: rgb(209, 209, 255);
+}
+
+.depositos{
+  border-bottom: 1px solid #4b4a4a;
+
+  max-width: max-content;
+}
+
+.barraIz{
+  border-left: 1px solid #464545;
+}
+
+.separador{
+  border-left: 1px solid #222121;
+}

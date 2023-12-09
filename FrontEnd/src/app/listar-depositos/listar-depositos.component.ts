@@ -42,7 +42,7 @@ export class ListarDepositosComponent {
   }
 
   public obtenerDeZona(x: Zona){
-    this.servicio.obetenerZonasDeSucursal(x).subscribe(dato=>{
+    this.servicio.obetenerDepositosDeZona(x).subscribe(dato=>{
       this.depositos = dato;
     },error=>console.log(error));
   }

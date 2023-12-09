@@ -32,11 +32,12 @@ import { ListarMisDepositosComponent } from './listar-mis-depositos/listar-mis-d
 import { ListarMisContratosModule } from './listar-mis-contratos/listar-mis-contratos.module';
 import { ListarMisDepositosModule } from './listar-mis-depositos/listar-mis-depositos.module';
 import { BarraLateralComponent } from './barra-lateral/barra-lateral.component';
-import { BarraLateralModule } from './barra-lateral/barra-lateral.module';
+import { SucursalZonaDepositoComponent } from './sucursal-zona-deposito/sucursal-zona-deposito.component';
+import { SucursalZonaDepositoModule } from './sucursal-zona-deposito/sucursal-zona-deposito.module';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
-  // {path: ':rol', component: BarraLateralComponent},
-
   {path: ':rol/listar_mis_contratos', component: ListarMisContratosComponent},
   {path: ':rol/listar_mis_depositos', component: ListarMisDepositosComponent},
 
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
   {path: ':rol/listar_zonas/:id', component: ListarZonasComponent},
   {path: ':rol/listar_sucursales', component: ListarSucursalesComponent},
   {path: ':rol/listar_sucursales/:id', component: ListarSucursalesComponent},
+  {path: ':rol/sucursal_zona_deposito/:id', component: SucursalZonaDepositoComponent},
 
   {path: 'registrarse', component: RegistrarseComponent},
 ];
@@ -60,7 +62,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    BarraLateralComponent
+    BarraLateralComponent,
+    SucursalZonaDepositoComponent
    ],
   imports: [
     BrowserModule,
@@ -82,9 +85,13 @@ const appRoutes: Routes = [
     ListarZonasModule,
     ListarMisContratosModule,
     ListarMisDepositosModule,
+    SucursalZonaDepositoModule,
 
     LoginModule,
     RegistrarseModule,
+
+    MatCheckboxModule,
+    FormsModule,
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent]

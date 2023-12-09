@@ -31,7 +31,6 @@ export class BarraLateralComponent implements OnInit{
         ['Listar sucursales', this.listar_sucursales(), this.obtenerRol()+'/listar_sucursales', this.obtenerRol() == "administrador"],
         ['Listar zonas', this.listar_zonas(), this.obtenerRol()+'/listar_zonas', this.obtenerRol() == "administrador"],
         ['Listar depóstios', this.listar_depositos(), this.obtenerRol()+'/listar_depositos', this.obtenerRol() == "administrador"],
-
       ]
     }
   }

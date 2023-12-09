@@ -4,6 +4,7 @@ import { EmpleadoService } from '../empleado/empleado.service';
 import { ClienteService } from '../cliente/cliente.service';
 import { Cliente } from '../cliente/cliente';
 import { Usuario } from '../usuario/usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-empleados',
@@ -21,7 +22,7 @@ export class ListarEmpleadosComponent implements OnInit{
   agregarVisible: Boolean;
   editarVisible: Boolean;
 
-  constructor(private servicioEmpleado: EmpleadoService, private servicioCliente: ClienteService){}
+  constructor(private servicioEmpleado: EmpleadoService, private servicioCliente: ClienteService, private ruta: Router){}
 
   ngOnInit(){
     this.agregarVisible=false;
@@ -162,8 +163,12 @@ export class ListarEmpleadosComponent implements OnInit{
     }
   }
 
-  public verMas(x: Empleado){
+  public obtenerRol(){
+    return localStorage.getItem("0");
+  }
 
+  public verMas(x: Empleado){
+    this.ruta.navigate([this.obtenerRol(), 'sucursal_zona_deposito', x.idUsuario]);
   }
 }
 

@@ -187,7 +187,7 @@
           <th>Autoridades</th>
           <th>Código</th>
           <th>Especialidad</th>
-          <th>Depositos</th>
+          <th>Sucursal, zona y depósitos asignados</th>
           <th>Botones</th>
         </tr>
       </thead>
@@ -202,7 +202,7 @@
           <td>{{objToString(empleado.administrador)}}</td>
           <td>{{empleado.codigo}}</td>
           <td>{{empleado.especialidad}}</td>
-          <td><button class="botonesCuadro" mat-raised-button color="primary" (click)="verMas(empleado)" routerLink="/listar_zonas" >Ver más</button></td>
+          <td><button class="botonesCuadro" mat-raised-button color="primary" (click)="verMas(empleado)">Ver más</button></td>
           <td>
             <button class="botonesCuadro" mat-raised-button color="primary" (click)="mostrarEditarVisible(empleado)">Editar</button>
             <button class="botonesCuadro" mat-raised-button color="warn" (click)="eliminar(empleado)">Eliminar</button>

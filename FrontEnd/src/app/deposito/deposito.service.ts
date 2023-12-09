@@ -31,7 +31,7 @@ export class DepositoService {
     return this.http.delete(this.listaURL+'/'+deposito.idDeposito);
   }
 
-  public obetenerZonasDeSucursal(x: any):Observable<Deposito[]>{
+  public obetenerDepositosDeZona(x: any):Observable<Deposito[]>{
     return this.http.get<Deposito[]>(this.listaURL+'/'+Number(x));
   }
 }
