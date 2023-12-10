@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Sucursal } from './sucursal';
+import { Zona } from '../zona/zona';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,9 @@ export class SucursalService {
   /** DELETE: delete the hero from the server */
   public eliminar(sucursal: Sucursal): Observable<Object>{
     return this.http.delete(this.listaURL+'/'+sucursal.idSucursal);
+  }
+
+  obetenerSucursalPerteneciente(z: number):Observable<Sucursal>{
+    return this.http.get<Sucursal>(this.listaURL+'/'+z);
   }
 }

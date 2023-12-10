@@ -5,6 +5,7 @@ import { ZonaService } from '../zona/zona.service';
 import { Sucursal } from '../sucursal/sucursal';
 import { Deposito } from '../deposito/deposito';
 import { Router } from '@angular/router';
+import { Observable, Subject, delay } from 'rxjs';
 
 @Component({
   selector: 'app-listar-zonas',
@@ -28,6 +29,10 @@ export class ListarZonasComponent implements OnInit{
 
   rol:String;
 
+  existencia: boolean;
+
+  sucursales:Sucursal[]
+
   constructor(private servicio: ZonaService, private ruta: Router, private servicioSucursal: SucursalService){  }
 
   ngOnInit(){
@@ -38,7 +43,22 @@ export class ListarZonasComponent implements OnInit{
 
     this.existeSucursal= false;
 
+    this.existencia = false;
+
     this.checkearExistenciaSucursal();
+
+    this.obtenerSucursales()
+  }
+
+  public obtenerSucursales(){
+    this.servicioSucursal.obetenerTodos().subscribe(datos=>{
+      this.sucursales = datos;
+      for(let sucursal of this.sucursales){
+        this.servicio.obetenerZonasDeSucursal(sucursal.idSucursal).subscribe(datosZonas=>{
+          sucursal.zonas=datosZonas;
+        })
+      }
+    });
   }
 
   public checkearExistenciaSucursal(){
@@ -63,7 +83,7 @@ export class ListarZonasComponent implements OnInit{
   }
 
   public obtenerDeSucursal(x: Sucursal){
-    this.servicio.obetenerZonasDeSucursal(x).subscribe(dato=>{
+    this.servicio.obetenerZonasDeSucursal(x.idSucursal).subscribe(dato=>{
       this.zonas = dato;
     },error=>console.log(error));
   }
@@ -80,9 +100,20 @@ export class ListarZonasComponent implements OnInit{
   }
 
   public checkearInexistencia(x: Zona){
-    for(let zona of this.zonas){
-      if(zona.letra==x.letra && zona.idZona!=x.idZona){
-        return true;
+    if(!(Number.isNaN(this.idSucursal)) && this.existeSucursal){
+      for(let zona of this.zonas){
+        if(zona.letra==x.letra && zona.idZona!=x.idZona){
+          return true;
+        }
+      }
+    }
+    else{
+      for(let sucursal of this.sucursales){
+        for(let zona of sucursal.zonas){
+          if(zona.letra == x.letra && zona.idZona!=x.idZona){
+            return true;
+          }
+        }
       }
     }
     return false;
@@ -91,6 +122,9 @@ export class ListarZonasComponent implements OnInit{
   public guardarNuevo(){
     if(this.checkearInexistencia(this.nuevo)){
       alert("La zona con la letra '"+this.nuevo.letra+"' ya existe en la sucursal");
+    }
+    else if(this.nuevo.letra.length>=2){
+      alert("El campo 'letra' no puede ser más de un caracter")
     }
     else if(this.nuevo.letra=="" || this.nuevo.letra==null){
       alert("El campo 'letra' está incompleto");
@@ -112,9 +146,12 @@ export class ListarZonasComponent implements OnInit{
     this.editarVisible=!this.editarVisible
   }
 
-  public guardarEditado(x: Zona){
+  public async guardarEditado(x: Zona){
     if(this.checkearInexistencia(x)){
       alert("La zona con la letra '"+x.letra+"' ya existe en la sucursal");
+    }
+    else if(x.letra.length>=2){
+      alert("El campo 'letra' no puede ser más de un caracter")
     }
     else if(x.letra=="" || x.letra==null){
       alert("El campo 'letra' está incompleto");

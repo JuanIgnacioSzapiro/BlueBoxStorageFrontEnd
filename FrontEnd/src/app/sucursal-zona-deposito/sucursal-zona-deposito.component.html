@@ -6,52 +6,54 @@
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th class="haciaIzquierda">ID</th>
               <th class="barraIz">Dirección</th>
               <th class="barraIz">Teléfono</th>
-              <th class="separador">Zonas</th>
+              <th class="separador zonasPintadas">Zonas</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{{sucursal.idSucursal}}</td>
+              <td class="haciaIzquierda">{{sucursal.idSucursal}}</td>
               <td class="barraIz">{{sucursal.direccion}}</td>
               <td class="barraIz">{{sucursal.telefono}}</td>
               <td class="separador">
                 <ul *ngFor="let zona of sucursal.zonas" class="zonasPintadas zonas">
-                  <li>
+                  <li class="correccionIdZona">
                     <table>
                       <thead>
                         <tr>
-                          <th>ID</th>
+                          <th class="haciaIzquierda">ID</th>
                           <th class="barraIz">Letra</th>
                           <th class="barraIz">Tipo</th>
-                          <th class="separador">Depósitos</th>
+                          <th class="separador depositosPintados">Depósitos</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>{{zona.idZona}}</td>
+                          <td class="haciaIzquierda">{{zona.idZona}}</td>
                           <td class="barraIz">{{zona.letra}}</td>
                           <td class="barraIz">{{zona.tipo}}</td>
                           <td class="separador">
                             <ul *ngFor="let deposito of zona.depositos" class="depositosPintados depositos">
-                              <li>
+                              <li class="correccionIdDeposito">
                                 <table>
                                   <thead>
                                     <tr>
-                                      <th>ID</th>
+                                      <th class="haciaIzquierda">ID</th>
                                       <th class="barraIz">Número</th>
                                       <th class="barraIz">Volumen</th>
-                                      <th>Asignar</th>
+                                      <th class="barraIz">Asignar</th>
                                     </tr>
                                   </thead>
                                   <tbody>
                                     <tr>
-                                      <td>{{deposito.idDeposito}}</td>
+                                      <td class="haciaIzquierda">{{deposito.idDeposito}}</td>
                                       <td class="barraIz">{{deposito.numero}}</td>
                                       <td class="barraIz">{{deposito.volumen}}</td>
-                                      <mat-checkbox [(ngModel)]="deposito.asignado" name="deposito_asignado" value="before" color="primary"></mat-checkbox>
+                                      <td class="barraIz">
+                                        <mat-checkbox [(ngModel)]="deposito.asignado" name="deposito_asignado" value="before" color="primary"></mat-checkbox>
+                                      </td>
                                     </tr>
                                   </tbody>
                                 </table>

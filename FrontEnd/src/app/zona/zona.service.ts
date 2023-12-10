@@ -33,7 +33,7 @@ export class ZonaService {
     return this.http.delete(this.listaURL+'/'+zona.idZona);
   }
 
-  public obetenerZonasDeSucursal(x: any):Observable<Zona[]>{
+  public obetenerZonasDeSucursal(x: Number):Observable<Zona[]>{
     return this.http.get<Zona[]>(this.listaURL+'/'+Number(x));
   }
 }
