@@ -35,7 +35,7 @@
   <form (ngSubmit)="guardarEditado(editable)">
     <mat-card class="formCard editable">
       <mat-card-content class="card">
-          <h2>Editar zona</h2>
+          <h2>Editar zona con ID {{editable.idZona}}</h2>
           <mat-form-field >
             <mat-label>
               Letra
@@ -59,7 +59,7 @@
         </mat-card-content>
         <mat-card-actions>
             <button class="botonesCuadro" mat-raised-button color="primary" type="submit">Guardar</button>
-            <button class="botonesCuadro botonBlanco" mat-button (click)="mostrarAgregarVisible()">Cerrar</button>
+            <button class="botonesCuadro botonBlanco" mat-button (click)="mostrarEditarVisible(editable)">Cerrar</button>
         </mat-card-actions>
     </mat-card>
   </form>

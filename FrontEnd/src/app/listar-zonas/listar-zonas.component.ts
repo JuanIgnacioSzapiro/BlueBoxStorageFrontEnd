@@ -46,8 +46,6 @@ export class ListarZonasComponent implements OnInit{
     this.existencia = false;
 
     this.checkearExistenciaSucursal();
-
-    this.obtenerSucursales()
   }
 
   public obtenerSucursales(){
@@ -77,13 +75,15 @@ export class ListarZonasComponent implements OnInit{
       else{
         this.botonNuevo=false;
 
+        this.obtenerSucursales();
+
         this.obtenerTodo();
       }
     })
   }
 
-  public obtenerDeSucursal(x: Sucursal){
-    this.servicio.obetenerZonasDeSucursal(x.idSucursal).subscribe(dato=>{
+  public obtenerDeSucursal(x: number){
+    this.servicio.obetenerZonasDeSucursal(x).subscribe(dato=>{
       this.zonas = dato;
     },error=>console.log(error));
   }
@@ -110,8 +110,13 @@ export class ListarZonasComponent implements OnInit{
     else{
       for(let sucursal of this.sucursales){
         for(let zona of sucursal.zonas){
-          if(zona.letra == x.letra && zona.idZona!=x.idZona){
-            return true;
+          if(zona.idZona == x.idZona){
+            this.idSucursal=sucursal.idSucursal;
+            for(let zona2 of sucursal.zonas){
+              if(zona2.letra == x.letra && zona2.idZona != x.idZona){
+                return true;
+              }
+            }
           }
         }
       }
@@ -121,7 +126,7 @@ export class ListarZonasComponent implements OnInit{
 
   public guardarNuevo(){
     if(this.checkearInexistencia(this.nuevo)){
-      alert("La zona con la letra '"+this.nuevo.letra+"' ya existe en la sucursal");
+      alert("La zona con la letra '"+this.nuevo.letra+"' ya existe en la sucursal '"+this.idSucursal+"'");
     }
     else if(this.nuevo.letra.length>=2){
       alert("El campo 'letra' no puede ser más de un caracter")
@@ -148,7 +153,7 @@ export class ListarZonasComponent implements OnInit{
 
   public async guardarEditado(x: Zona){
     if(this.checkearInexistencia(x)){
-      alert("La zona con la letra '"+x.letra+"' ya existe en la sucursal");
+      alert("La zona con la letra '"+x.letra+"' ya existe en la sucursal '"+this.idSucursal+"'");
     }
     else if(x.letra.length>=2){
       alert("El campo 'letra' no puede ser más de un caracter")
