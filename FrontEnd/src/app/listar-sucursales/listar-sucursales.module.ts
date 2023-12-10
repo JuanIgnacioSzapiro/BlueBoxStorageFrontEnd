@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { ListarZonasComponent } from '../listar-zonas/listar-zonas.component';
+import { ListarZonasModule } from '../listar-zonas/listar-zonas.module';
 
 const direccionamiento: Routes = [
   {path: 'listar_zonas', component: ListarZonasComponent},
@@ -25,7 +26,7 @@ const direccionamiento: Routes = [
     BrowserModule,
     FormsModule,
     MatCardModule,
-    RouterModule.forRoot(direccionamiento)
+    RouterModule.forRoot(direccionamiento),
   ],
   exports:[ListarSucursalesComponent],
   declarations: [ListarSucursalesComponent]

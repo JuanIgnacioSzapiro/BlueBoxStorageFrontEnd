@@ -1,13 +1,16 @@
+import { Deposito } from './../deposito/deposito';
 import { SucursalService } from './../sucursal/sucursal.service';
 import { Component, OnInit } from '@angular/core';
 import { Zona } from '../zona/zona';
 import { ZonaService } from '../zona/zona.service';
 import { Sucursal } from '../sucursal/sucursal';
-import { Deposito } from '../deposito/deposito';
 import { Router } from '@angular/router';
 import { Observable, Subject, delay } from 'rxjs';
+import { DepositoService } from '../deposito/deposito.service';
+import { ListarDepositosComponent } from '../listar-depositos/listar-depositos.component';
 
 @Component({
+  providers:[ ListarDepositosComponent ],
   selector: 'app-listar-zonas',
   templateUrl: './listar-zonas.component.html',
   styleUrls: ['./listar-zonas.component.css', '../app.component.css']
@@ -31,9 +34,9 @@ export class ListarZonasComponent implements OnInit{
 
   existencia: boolean;
 
-  sucursales:Sucursal[]
+  sucursales:Sucursal[];
 
-  constructor(private servicio: ZonaService, private ruta: Router, private servicioSucursal: SucursalService){  }
+  constructor(private servicio: ZonaService, private ruta: Router, private servicioSucursal: SucursalService, private depositoService: DepositoService){  }
 
   ngOnInit(){
     this.idSucursal = Number(window.location.toString().slice(window.location.toString().lastIndexOf('/')+1));
@@ -172,8 +175,13 @@ export class ListarZonasComponent implements OnInit{
   }
 
   public eliminar(x: Zona){
-    this.servicio.eliminar(x).subscribe(dato=>{
-      this.ngOnInit();
+    this.depositoService.obetenerDepositosDeZona(x.idZona).subscribe(losDepositos=>{
+      for(let elDeposito of losDepositos){
+        this.depositoService.eliminar(elDeposito);
+      }
+      this.servicio.eliminar(x).subscribe(dato=>{
+        this.ngOnInit();
+      })
     });
   }
 

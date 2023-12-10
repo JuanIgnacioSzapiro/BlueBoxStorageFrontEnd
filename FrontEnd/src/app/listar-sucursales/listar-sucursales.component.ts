@@ -1,9 +1,13 @@
+import { ListarZonasComponent } from './../listar-zonas/listar-zonas.component';
+import { ZonaService } from './../zona/zona.service';
 import { SucursalService } from './../sucursal/sucursal.service';
 import { Router } from '@angular/router';
 import { Sucursal } from './../sucursal/sucursal';
 import { Component, OnInit } from '@angular/core';
+import { DepositoService } from '../deposito/deposito.service';
 
 @Component({
+  providers:[ ListarZonasComponent ],
   selector: 'app-listar-sucursales',
   templateUrl: './listar-sucursales.component.html',
   styleUrls: ['./listar-sucursales.component.css', '../app.component.css']
@@ -16,7 +20,9 @@ export class ListarSucursalesComponent implements OnInit{
   agregarVisible: Boolean;
   editarVisible: Boolean;
 
-  constructor(private servicio: SucursalService, private ruta: Router){}
+  listarZonasComponent: ListarZonasComponent
+
+  constructor(private servicio: SucursalService, private ruta: Router, private zonaService: ZonaService, private depositoService: DepositoService){}
 
   ngOnInit(){
     this.agregarVisible=false;
@@ -30,6 +36,7 @@ export class ListarSucursalesComponent implements OnInit{
   }
 
   public mostrarAgregarVisible(){
+    this.nuevo= new Sucursal;
     this.agregarVisible=!this.agregarVisible;
   }
 
@@ -84,8 +91,20 @@ export class ListarSucursalesComponent implements OnInit{
   }
 
   public eliminar(x: Sucursal){
-    this.servicio.eliminar(x).subscribe(dato=>{
-      this.ngOnInit();
+    this.zonaService.obetenerZonasDeSucursal(x.idSucursal).subscribe(lasZonas=>{
+      for(let laZona of lasZonas){
+        this.depositoService.obetenerDepositosDeZona(laZona.idZona).subscribe(losDepositos=>{
+          for(let elDeposito of losDepositos){
+            this.depositoService.eliminar(elDeposito);
+          }
+          this.zonaService.eliminar(laZona).subscribe(dato=>{
+            this.ngOnInit();
+          })
+        });
+      }
+      this.servicio.eliminar(x).subscribe(dato=>{
+        this.ngOnInit();
+      });
     });
   }
 

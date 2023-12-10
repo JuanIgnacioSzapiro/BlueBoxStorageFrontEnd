@@ -38,28 +38,28 @@ export class BarraLateralComponent implements OnInit{
 
 
   public listar_mis_contratos(){
-    this.ruta.navigate([this.obtenerRol(), '/listar_mis_contratos']);
+    this.ruta.navigate([this.obtenerRol(), 'listar_mis_contratos']);
   }
   public listar_mis_depositos(){
-    this.ruta.navigate([this.obtenerRol(), '/listar_mis_depositos']);
+    this.ruta.navigate([this.obtenerRol(), 'listar_mis_depositos']);
   }
   public listar_clientes(){
-    this.ruta.navigate([this.obtenerRol(), '/listar_clientes']);
+    this.ruta.navigate([this.obtenerRol(), '/istar_clientes']);
   }
   public listar_empleados(){
-    this.ruta.navigate([this.obtenerRol(), '/listar_empleados']);
+    this.ruta.navigate([this.obtenerRol(), 'listar_empleados']);
   }
   public listar_contratos(){
-    this.ruta.navigate([this.obtenerRol(), '/listar_contratos']);
+    this.ruta.navigate([this.obtenerRol(), 'listar_contratos']);
   }
   public listar_sucursales(){
-    this.ruta.navigate([this.obtenerRol(), '/listar_sucursales']);
+    this.ruta.navigate([this.obtenerRol(), 'listar_sucursales']);
   }
   public listar_zonas(){
-    this.ruta.navigate([this.obtenerRol(), '/listar_zonas']);
+    this.ruta.navigate([this.obtenerRol(), 'listar_zonas']);
   }
   public listar_depositos(){
-    this.ruta.navigate([this.obtenerRol(), '/listar_depositos']);
+    this.ruta.navigate([this.obtenerRol(), 'listar_depositos']);
   }
 
   public cerrarSesion(){
