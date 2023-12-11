@@ -18,7 +18,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.ruta.navigate([''])
+    this.ruta.navigate([' ']);
     this.loggedIn=false;
     this.registrar=false;
   }

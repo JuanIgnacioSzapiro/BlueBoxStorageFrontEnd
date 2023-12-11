@@ -63,7 +63,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     BarraLateralComponent,
-    SucursalZonaDepositoComponent
+    SucursalZonaDepositoComponent,
    ],
   imports: [
     BrowserModule,

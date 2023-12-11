@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { Deposito } from './deposito';
 
 @Injectable({
@@ -13,7 +12,7 @@ export class DepositoService {
 
   private listaURL = 'http://localhost:8080/depositos';
 
-  obetenerTodos():Observable<Deposito[]>{
+  public obetenerTodos():Observable<Deposito[]>{
     return this.http.get<Deposito[]>(this.listaURL);
   }
 
@@ -26,6 +25,7 @@ export class DepositoService {
   public modificar(deposito: Deposito): Observable<Deposito>{
     return this.http.put<Deposito>(this.listaURL+'/'+deposito.idDeposito, deposito);
   }
+
   /** DELETE: delete the hero from the server */
   public eliminar(deposito: Deposito): Observable<Object>{
     return this.http.delete(this.listaURL+'/'+deposito.idDeposito);

@@ -1,5 +1,5 @@
 export class Deposito {
-    idDeposito:Number;
+    idDeposito:number;
     volumen:Number;
     numero:Number;
     asignado:Boolean;

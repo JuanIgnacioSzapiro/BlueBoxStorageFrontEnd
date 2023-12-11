@@ -52,7 +52,7 @@
                                       <td class="barraIz">{{deposito.numero}}</td>
                                       <td class="barraIz">{{deposito.volumen}}</td>
                                       <td class="barraIz">
-                                        <mat-checkbox [(ngModel)]="deposito.asignado" name="deposito_asignado" value="before" color="primary"></mat-checkbox>
+                                        <mat-checkbox (change)="agregarOsacar(deposito)" [(ngModel)]="deposito.asignado" name="deposito_asignado" value="before" color="primary"></mat-checkbox>
                                       </td>
                                     </tr>
                                   </tbody>
