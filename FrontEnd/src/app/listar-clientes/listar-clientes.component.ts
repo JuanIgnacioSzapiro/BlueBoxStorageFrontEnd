@@ -4,6 +4,7 @@ import { Cliente } from '../cliente/cliente';
 import { Usuario } from '../usuario/usuario';
 import { Empleado } from '../empleado/empleado';
 import { EmpleadoService } from '../empleado/empleado.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-clientes',
@@ -16,7 +17,7 @@ export class ListarClientesComponent implements OnInit{
   empleados: Empleado[];
   editarVisible:boolean;
 
-  constructor(private servicioCliente: ClienteService, private servicioEmpleado: EmpleadoService){}
+  constructor(private servicioCliente: ClienteService, private servicioEmpleado: EmpleadoService, private ruta: Router){}
 
   ngOnInit(){
     this.editarVisible=false;
@@ -108,7 +109,11 @@ export class ListarClientesComponent implements OnInit{
     });
   }
 
-  public verMas(x: Cliente){
+  public obtenerRol(){
+    return localStorage.getItem("0");
+  }
 
+  public verMas(x: Cliente){
+    this.ruta.navigate([this.obtenerRol(), 'listar_contratos', x.idUsuario]);
   }
 }

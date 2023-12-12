@@ -11,7 +11,7 @@ import { ContratoService } from '../contrato/contrato.service';
   styleUrls: ['./listar-contratos.component.css', '../app.component.css']
 })
 export class ListarContratosComponent {
-  contratos: Contrato[];
+  contratos: Contrato[] = [];
   depositos: Deposito[];
 
   editable: Contrato;
@@ -21,12 +21,15 @@ export class ListarContratosComponent {
   editarVisible: Boolean;
 
   id_usuario: number;
+  idCliente: any;
 
   cliente: boolean
 
   constructor(private servicio: ContratoService, private depositoService: DepositoService){  }
 
   ngOnInit(){
+    this.idCliente = Number(window.location.toString().slice(window.location.toString().lastIndexOf('/')+1));
+
     this.id_usuario=Number(this.obtenerIdUsuario());
 
     this.agregarVisible = false;
@@ -59,14 +62,34 @@ export class ListarContratosComponent {
   }
 
   private obtenerTodos(){
+    console.log(this.idCliente);
+
     if(this.obtenerRol()=="administrador"){
-      this.servicio.obetenerTodos().subscribe(dato=>{
-        this.contratos = dato;
+      this.servicio.obetenerTodos().subscribe(datos=>{
+        if(Number.isNaN(this.idCliente)){
+          this.contratos = datos;
+        }
+        else{
+          for(let dato of datos){
+            if(dato.idUsuario == this.idCliente){
+              this.contratos = this.contratos.concat(dato);
+            }
+          }
+        }
       })
     }
     else{
-      this.servicio.obetenerTodosDeEmpleado(this.id_usuario).subscribe(dato=>{
-        this.contratos = dato;
+      this.servicio.obetenerTodosDeEmpleado(this.id_usuario).subscribe(datos=>{
+        if(Number.isNaN(this.idCliente)){
+          this.contratos = datos;
+        }
+        else{
+          for(let dato of datos){
+            if(dato.idUsuario == this.idCliente){
+              this.contratos = this.contratos.concat(dato);
+            }
+          }
+        }
       })
     }
   }
