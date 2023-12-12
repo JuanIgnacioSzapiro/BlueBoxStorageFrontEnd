@@ -2,7 +2,9 @@
   <mat-drawer #drawer opened="true" mode="over">
     <mat-nav-list>
       <mat-list-item *ngFor="let recorre of sideBarItems.nombreYredireccionamiento">
-        <div class="enrutamiento" (click)="recorre[1]" routerLink="{{recorre[2]}}" *ngIf="recorre[3]">{{recorre[0]}}</div>
+        <div *ngIf="recorre[3]">
+          <div class="enrutamiento" (click)="recorre[1]" routerLink="{{recorre[2]}}">{{recorre[0]}}</div>
+        </div>
       </mat-list-item>
       <mat-list-item>
         <div class="enrutamiento cerrarSesion" (click)="cerrarSesion()">Cerrar sesión</div>

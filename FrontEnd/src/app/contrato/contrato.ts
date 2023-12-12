@@ -1,8 +1,10 @@
 export class Contrato {
-    idContrato!:number;
-    fechaInicio!:Date;
-    fechaTerminacion!:Date;
-    idCliente!:number;
-    idDeposito!:number;
-    aprobado!:boolean;
+    idContrato:number;
+    idUsuario:number;
+    idDeposito:number;
+    aprobado:boolean;
+    aprobadoString:string;
+
+    fechaInicio: number;
+    fechaTerminacion: number;
 }

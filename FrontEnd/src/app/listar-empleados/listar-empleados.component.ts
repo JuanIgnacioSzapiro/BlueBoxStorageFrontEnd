@@ -159,7 +159,7 @@ export class ListarEmpleadosComponent implements OnInit{
       });
     }
     else{
-      alert("No se puede eliminar el administrador");
+      alert("No se puede eliminar el administrador maestro");
     }
   }
 

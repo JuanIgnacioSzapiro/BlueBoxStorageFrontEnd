@@ -29,20 +29,22 @@ export class LoginComponent implements OnInit{
     }
 
     this.usuarioService.obtener(this.usuario).subscribe(x=>{
-      let string = JSON.stringify(x);
+      let jsonstring = JSON.stringify(x);
 
-      if(string?.includes('"administrador":true')){
+      if(jsonstring?.includes('"administrador":true')){
         localStorage.setItem("0", "administrador");
       }
-      else if(string?.includes('"empleado":true')){
+      else if(jsonstring?.includes('"empleado":true')){
         localStorage.setItem("0", "empleado");
       }
-      else if(string?.includes('"pendiente":true')){
+      else if(jsonstring?.includes('"pendiente":true')){
         localStorage.setItem("0", "pendiente");
       }
-      else if(string?.includes('"cliente":true')){
+      else if(jsonstring?.includes('"cliente":true')){
         localStorage.setItem("0", "cliente");
       }
+
+      localStorage.setItem("1", jsonstring.substring((jsonstring.indexOf(':')+1), jsonstring.indexOf(',')));
 
       this.appComponent.logueado();
     })

@@ -29,8 +29,6 @@ export class SucursalZonaDepositoComponent implements OnInit{
   constructor( private sucursalServicio: SucursalService, private zonaService: ZonaService, private depositoService: DepositoService, private empleadoDepositoService: EmpleadoDepositoService, private empleadoService: EmpleadoService){  }
 
   ngOnInit(){
-    console.clear();
-
     this.idEmpleado = Number(window.location.toString().slice(window.location.toString().lastIndexOf('/')+1));
 
     this.obtenerEmpleadoDeposito();
@@ -87,14 +85,8 @@ export class SucursalZonaDepositoComponent implements OnInit{
   }
 
   public sacar(id_deposito: number){
-    console.log(this.empleadoDepositos);
-
     this.empleadoDepositos.forEach(empleadoDeposito=>{
       if(empleadoDeposito.idDeposito == id_deposito && empleadoDeposito.idUsuario == this.idEmpleado){
-
-        console.log(empleadoDeposito);
-        console.log(empleadoDeposito.id_empleado_deposito);
-
         this.empleadoDepositoService.eliminar(empleadoDeposito.id_empleado_deposito).subscribe(x=>{
           this.ngOnInit();
         });

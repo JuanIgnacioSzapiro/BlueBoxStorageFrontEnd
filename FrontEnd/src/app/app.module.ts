@@ -19,7 +19,6 @@ import { ListarContratosComponent } from './listar-contratos/listar-contratos.co
 import { ListarDepositosComponent } from './listar-depositos/listar-depositos.component';
 import { ListarSucursalesComponent } from './listar-sucursales/listar-sucursales.component';
 import { ListarZonasComponent } from './listar-zonas/listar-zonas.component';
-import { ListarUsuariosModule } from './listar-usuarios/listar-usuarios.module';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { RegistrarseModule } from './registrarse/registrarse.module';
 import { ListarClientesModule } from './listar-clientes/listar-clientes.module';
@@ -27,10 +26,6 @@ import { ListarContratosModule } from './listar-contratos/listar-contratos.modul
 import { ListarDepositosModule } from './listar-depositos/listar-depositos.module';
 import { ListarSucursalesModule } from './listar-sucursales/listar-sucursales.module';
 import { ListarZonasModule } from './listar-zonas/listar-zonas.module';
-import { ListarMisContratosComponent } from './listar-mis-contratos/listar-mis-contratos.component';
-import { ListarMisDepositosComponent } from './listar-mis-depositos/listar-mis-depositos.component';
-import { ListarMisContratosModule } from './listar-mis-contratos/listar-mis-contratos.module';
-import { ListarMisDepositosModule } from './listar-mis-depositos/listar-mis-depositos.module';
 import { BarraLateralComponent } from './barra-lateral/barra-lateral.component';
 import { SucursalZonaDepositoComponent } from './sucursal-zona-deposito/sucursal-zona-deposito.component';
 import { SucursalZonaDepositoModule } from './sucursal-zona-deposito/sucursal-zona-deposito.module';
@@ -38,10 +33,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
-  {path: ':rol/listar_mis_contratos', component: ListarMisContratosComponent},
-  {path: ':rol/listar_mis_depositos', component: ListarMisDepositosComponent},
-
-  // {path: 'listar_usuarios', component: ListarUsuariosComponent},
   {path: ':rol/listar_clientes', component: ListarClientesComponent},
   {path: ':rol/listar_empleados', component: ListarEmpleadosComponent},
 
@@ -76,15 +67,12 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
 
-    ListarUsuariosModule,
     ListarEmpleadosModule,
     ListarClientesModule,
     ListarContratosModule,
     ListarDepositosModule,
     ListarSucursalesModule,
     ListarZonasModule,
-    ListarMisContratosModule,
-    ListarMisDepositosModule,
     SucursalZonaDepositoModule,
 
     LoginModule,

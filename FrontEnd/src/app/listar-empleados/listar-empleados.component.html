@@ -3,8 +3,7 @@
   <div>
     <button mat-raised-button color="warn" class="botonNuevo" (click)="mostrarAgregarVisible()">Nuevo Empleado</button>
   </div>
-
-  <div *ngIf="agregarVisible" >
+  <div *ngIf="agregarVisible">
     <form (ngSubmit)="guardarNuevo()">
       <mat-card class="formCard editable">
         <mat-card-content class="card">

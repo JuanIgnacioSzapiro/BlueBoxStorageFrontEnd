@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { Contrato } from './contrato';
 
 @Injectable({
@@ -17,22 +16,26 @@ export class ContratoService {
     return this.http.get<Contrato[]>(this.listaURL);
   }
 
-  /** POST: add a new hero to the database */
-  agregar(contrato: Contrato): Observable<Contrato> {
-    return this.http.post<Contrato>(this.listaURL, contrato)
-      .pipe(
-        catchError(this.handleError('agregar', contrato))
-      );
+  obetenerTodosDeEmpleado(x: number):Observable<Contrato[]>{
+    return this.http.get<Contrato[]>(this.listaURL+"_de_empleado/"+x);
   }
-  handleError(arg0: string, hero: any): (err: any, caught: Observable<Contrato>) => import("rxjs").ObservableInput<any> {
-    throw new Error('Method not implemented.');
+
+  obetenerDeUsuario(id_usuario:number):Observable<Contrato[]>{
+    return this.http.get<Contrato[]>(this.listaURL+'/'+id_usuario);
+  }
+
+  /** POST: add a new hero to the database */
+  public agregar(contrato: Contrato): Observable<Contrato> {
+    return this.http.post<Contrato>(this.listaURL, contrato);
   }
 
   /** PUT: update the hero on the server. Returns the updated hero upon success. */
-  modificar(contrato: Contrato): Observable<Contrato>{
-    return this.http.put<Contrato>(this.listaURL, contrato)
-      .pipe(
-        catchError(this.handleError('updateHero', contrato))
-      );
+  public modificar(contrato: Contrato): Observable<Contrato>{
+    return this.http.put<Contrato>(this.listaURL+'/'+contrato.idContrato, contrato);
+  }
+
+  /** DELETE: delete the hero from the server */
+  public eliminar(contrato: Contrato): Observable<Object>{
+    return this.http.delete(this.listaURL+'/'+contrato.idContrato);
   }
 }

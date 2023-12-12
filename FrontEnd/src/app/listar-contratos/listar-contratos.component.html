@@ -1,5 +1,41 @@
 <div>
   <h1>Lista de contratos</h1>
+  <div *ngIf="cliente">
+    <button mat-raised-button color="warn" class="botonNuevo" (click)="mostrarAgregarVisible()">Nuevo contrato</button>
+  </div>
+  <div *ngIf="agregarVisible">
+    <form (ngSubmit)="guardarNuevo()">
+      <mat-card class="formCard editable">
+        <mat-card-content class="card">
+          <h2>Nuevo contrato</h2>
+          <mat-form-field>
+            <mat-label>
+              Fecha de inicio
+            </mat-label>
+            <input
+              type="date"
+              [(ngModel)]="nuevo.fechaInicio"
+              matInput
+              name="nuevo_fechaInicio">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>
+              Fecha de terminación
+            </mat-label>
+            <input
+              type="date"
+              [(ngModel)]="nuevo.fechaTerminacion"
+              matInput
+              name="nuevo_fechaInicio">
+          </mat-form-field>
+          <mat-card-actions>
+            <button class="botonesCuadro" mat-raised-button color="primary"  type="submit">Guardar</button>
+            <button class="botonesCuadro botonBlanco" mat-raised-button (click)="mostrarAgregarVisible()">Cerrar</button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
   <div class="contenedorTabla">
     <table>
       <thead>
@@ -7,10 +43,10 @@
           <th>ID</th>
           <th>Fecha de inicio</th>
           <th>Fecha de terminación</th>
-          <th>ID del cliente</th>
-          <th>ID del depósito</th>
+          <th *ngIf="!cliente">ID del cliente</th>
+          <th *ngIf="!cliente">ID del depósito</th>
           <th>Aprobado</th>
-          <th>Botones</th>
+          <th *ngIf="!cliente">Botones</th>
         </tr>
       </thead>
       <tbody>
@@ -18,12 +54,15 @@
           <td>{{contrato.idContrato}}</td>
           <td>{{contrato.fechaInicio}}</td>
           <td>{{contrato.fechaTerminacion}}</td>
-          <td>{{contrato.idCliente}}</td>
-          <td>{{contrato.idDeposito}}</td>
-          <td>{{contrato.aprobado}}</td>
-          <td>
-            <button class="botonesCuadro" mat-raised-button color="primary">Editar</button>
-            <button class="botonesCuadro" mat-raised-button color="warn">Eliminar</button>
+          <td *ngIf="!cliente">{{contrato.idUsuario}}</td>
+          <td *ngIf="!cliente">{{contrato.idDeposito}}</td>
+          <td *ngIf="cliente">{{contrato.aprobadoString}}</td>
+          <td *ngIf="!cliente">
+            <mat-checkbox (change)="aprobar(contrato)" [(ngModel)]="contrato.aprobado" name="contrato_aprobado" value="before" color="primary"></mat-checkbox>
+          </td>
+          <td *ngIf="!cliente">
+            <!-- <button class="botonesCuadro" mat-raised-button color="primary">Editar</button> -->
+            <button class="botonesCuadro" mat-raised-button color="warn" (click)="eliminar(contrato)">Eliminar</button>
           </td>
         </tr>
       </tbody>
