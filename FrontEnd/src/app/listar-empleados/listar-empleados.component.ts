@@ -22,9 +22,13 @@ export class ListarEmpleadosComponent implements OnInit{
   agregarVisible: Boolean;
   editarVisible: Boolean;
 
+  soloAdmin:boolean;
+  soloNoAdmin:boolean;
+
   constructor(private servicioEmpleado: EmpleadoService, private servicioCliente: ClienteService, private ruta: Router){}
 
   ngOnInit(){
+    this.empleados = [];
     this.agregarVisible=false;
     this.editarVisible=false;
     this.obtenerEmpleados();
@@ -32,8 +36,25 @@ export class ListarEmpleadosComponent implements OnInit{
   }
 
   private obtenerEmpleados(){
-    this.servicioEmpleado.obetenerTodos().subscribe(dato=>
-      {this.empleados=dato;})
+    this.servicioEmpleado.obetenerTodos().subscribe(datos=>{
+      if(this.soloAdmin){
+        for(let dato of datos){
+          if(dato.administrador==true){
+            this.empleados=this.empleados.concat(dato);
+          }
+        }
+      }
+      else if(this.soloNoAdmin){
+        for(let dato of datos){
+          if(dato.administrador==false){
+            this.empleados=this.empleados.concat(dato);
+          }
+        }
+      }
+      else{
+        this.empleados=datos;
+      }
+    })
   }
   private obtenerClientes(){
     this.servicioCliente.obetenerTodos().subscribe(dato=>
@@ -179,6 +200,18 @@ export class ListarEmpleadosComponent implements OnInit{
 
   public verMas(x: Empleado){
     this.ruta.navigate([this.obtenerRol(), 'sucursal_zona_deposito', x.idUsuario]);
+  }
+
+  public soloAdminFunc(){
+    this.soloAdmin!=this.soloAdmin;
+    this.soloNoAdmin=false;
+    this.ngOnInit();
+  }
+
+  public soloNoAdminFunc(){
+    this.soloNoAdmin!=this.soloNoAdmin;
+    this.soloAdmin=false;
+    this.ngOnInit();
   }
 }
 

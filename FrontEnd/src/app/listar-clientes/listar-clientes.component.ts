@@ -17,9 +17,13 @@ export class ListarClientesComponent implements OnInit{
   empleados: Empleado[];
   editarVisible:boolean;
 
+  soloPendientes:boolean;
+  soloNOPendientes:boolean;
+
   constructor(private servicioCliente: ClienteService, private servicioEmpleado: EmpleadoService, private ruta: Router){}
 
   ngOnInit(){
+    this.clientes=[]
     this.editarVisible=false;
     this.obtenerEmpleados();
     this.obtenerClientes();
@@ -32,7 +36,23 @@ export class ListarClientesComponent implements OnInit{
 
   private obtenerClientes(){
     this.servicioCliente.obetenerTodos().subscribe(datos=>{
-      this.clientes=datos;
+      if(this.soloPendientes){
+        for(let dato of datos){
+          if(dato.pendiente==true){
+            this.clientes=this.clientes.concat(dato);
+          }
+        }
+      }
+      else if(this.soloNOPendientes){
+        for(let dato of datos){
+          if(dato.pendiente==false){
+            this.clientes=this.clientes.concat(dato);
+          }
+        }
+      }
+      else{
+        this.clientes=datos;
+      }
     });
   }
 
@@ -115,5 +135,17 @@ export class ListarClientesComponent implements OnInit{
 
   public verMas(x: Cliente){
     this.ruta.navigate([this.obtenerRol(), 'listar_contratos', x.idUsuario]);
+  }
+
+  public soloPendientesFunc(){
+    this.soloPendientes!=this.soloPendientes;
+    this.soloNOPendientes=false;
+    this.ngOnInit();
+  }
+
+  public soloNOPendientesFunc(){
+    this.soloNOPendientes!=this.soloNOPendientes;
+    this.soloPendientes=false;
+    this.ngOnInit();
   }
 }

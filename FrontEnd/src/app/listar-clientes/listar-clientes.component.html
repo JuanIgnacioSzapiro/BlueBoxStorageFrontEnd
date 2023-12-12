@@ -96,6 +96,10 @@
     </form>
   </div>
   <div class="contenedorTabla">
+    <div class="filtros">
+      <mat-checkbox [(ngModel)]="soloPendientes" value="after" color="primary" name="soloAdmin" (change)="soloPendientesFunc()">Mostrar únicamente pendientes</mat-checkbox>
+      <mat-checkbox [(ngModel)]="soloNOPendientes" value="after" color="primary" name="soloNoAdmin" (change)="soloNOPendientesFunc()">Mostrar únicamente los NO pendientes</mat-checkbox>
+    </div>
     <table>
       <thead>
         <tr>

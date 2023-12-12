@@ -62,8 +62,6 @@ export class ListarContratosComponent {
   }
 
   private obtenerTodos(){
-    console.log(this.idCliente);
-
     if(this.obtenerRol()=="administrador"){
       this.servicio.obetenerTodos().subscribe(datos=>{
         if(Number.isNaN(this.idCliente)){

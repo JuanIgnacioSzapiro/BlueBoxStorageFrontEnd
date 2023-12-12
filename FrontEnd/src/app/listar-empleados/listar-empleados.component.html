@@ -194,6 +194,10 @@
   </div>
 
   <div class="contenedorTabla">
+    <div class="filtros">
+      <mat-checkbox [(ngModel)]="soloAdmin" value="after" color="primary" name="soloAdmin" (change)="soloAdminFunc()">Mostrar únicamente administradores</mat-checkbox>
+      <mat-checkbox [(ngModel)]="soloNoAdmin" value="after" color="primary" name="soloNoAdmin" (change)="soloNoAdminFunc()">Mostrar únicamente los NO administradores</mat-checkbox>
+    </div>
     <table>
       <thead>
         <tr>
@@ -203,7 +207,9 @@
           <th>Telefono</th>
           <th>Nombre de Usuario</th>
           <th>Clave de Usuario</th>
-          <th>Autoridades</th>
+          <th>
+            Autoridades
+          </th>
           <th>Código</th>
           <th>Especialidad</th>
           <th>Sucursal, zona y depósitos asignados</th>
