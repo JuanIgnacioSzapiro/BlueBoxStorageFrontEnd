@@ -25,6 +25,8 @@ export class ListarEmpleadosComponent implements OnInit{
   soloAdmin:boolean;
   soloNoAdmin:boolean;
 
+  buscado: string;
+
   constructor(private servicioEmpleado: EmpleadoService, private servicioCliente: ClienteService, private ruta: Router){}
 
   ngOnInit(){
@@ -37,25 +39,47 @@ export class ListarEmpleadosComponent implements OnInit{
 
   private obtenerEmpleados(){
     this.servicioEmpleado.obetenerTodos().subscribe(datos=>{
-      if(this.soloAdmin){
-        for(let dato of datos){
-          if(dato.administrador==true){
-            this.empleados=this.empleados.concat(dato);
-          }
-        }
-      }
-      else if(this.soloNoAdmin){
-        for(let dato of datos){
-          if(dato.administrador==false){
-            this.empleados=this.empleados.concat(dato);
-          }
-        }
-      }
-      else{
-        this.empleados=datos;
-      }
+      this.filtrarAdmin(datos)
     })
   }
+
+  public filtrarAdmin(datos: Empleado[]){
+    var datosAux: Empleado[] = [];
+    if(this.soloAdmin){
+      for(let dato of datos){
+        if(dato.administrador==true){
+          datosAux=datosAux.concat(dato);
+        }
+      }
+    }
+    else if(this.soloNoAdmin){
+      for(let dato of datos){
+        if(dato.administrador==false){
+          datosAux=datosAux.concat(dato);
+        }
+      }
+    }
+    else{
+      datosAux=datos;
+    }
+    this.filtrarBuscado(datosAux);
+  }
+
+  public filtrarBuscado(datos: Empleado[]){
+    if(this.buscado != undefined && this.buscado != ""){
+      for(let dato of datos){
+        if(dato.nombre != undefined && dato.nombre != null){
+          if(dato.nombre.toLocaleUpperCase().includes(this.buscado.toLocaleUpperCase())){
+            this.empleados=this.empleados.concat(dato);
+          }
+        }
+      }
+    }
+    else{
+      this.empleados=datos;
+    }
+  }
+
   private obtenerClientes(){
     this.servicioCliente.obetenerTodos().subscribe(dato=>
       {this.clientes=dato;});
@@ -211,6 +235,23 @@ export class ListarEmpleadosComponent implements OnInit{
   public soloNoAdminFunc(){
     this.soloNoAdmin!=this.soloNoAdmin;
     this.soloAdmin=false;
+    this.ngOnInit();
+  }
+
+  public buscar(x: string){
+    this.buscado=x;
+    this.ngOnInit();
+  }
+
+  public limpiarFiltros(){
+    this.soloAdmin = false;
+    this.soloNoAdmin = false;
+    this.buscado = "";
+    this.ngOnInit();
+  }
+  
+  public limpiar(){
+    this.buscado = "";
     this.ngOnInit();
   }
 }

@@ -197,6 +197,21 @@
     <div class="filtros">
       <mat-checkbox [(ngModel)]="soloAdmin" value="after" color="primary" name="soloAdmin" (change)="soloAdminFunc()">Mostrar únicamente administradores</mat-checkbox>
       <mat-checkbox [(ngModel)]="soloNoAdmin" value="after" color="primary" name="soloNoAdmin" (change)="soloNoAdminFunc()">Mostrar únicamente los NO administradores</mat-checkbox>
+      <form (ngSubmit)="buscar(buscado)" class="buscador">
+        <mat-form-field>
+          <mat-label>Buscar por nombre</mat-label>
+          <input
+              type="text"
+              placeholder="Buscar por nombre"
+              [(ngModel)]="buscado"
+              value="{{buscado}}"
+              matInput
+              name="buscado">
+        </mat-form-field>
+        <button class="botonesCuadro botonBlanco" mat-raised-button type="submit">Buscar</button>
+        <button class="botonesCuadro botonBlanco" mat-raised-button (click)="limpiar()">Limpiar</button>
+      </form>
+      <button class="botonesCuadro botonBlanco" mat-raised-button (click)="limpiarFiltros()">Limpiar filtros</button>
     </div>
     <table>
       <thead>

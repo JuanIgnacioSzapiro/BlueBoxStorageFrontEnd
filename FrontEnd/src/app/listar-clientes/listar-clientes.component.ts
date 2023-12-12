@@ -20,10 +20,12 @@ export class ListarClientesComponent implements OnInit{
   soloPendientes:boolean;
   soloNOPendientes:boolean;
 
+  buscado: string;
+
   constructor(private servicioCliente: ClienteService, private servicioEmpleado: EmpleadoService, private ruta: Router){}
 
   ngOnInit(){
-    this.clientes=[]
+    this.clientes=[];
     this.editarVisible=false;
     this.obtenerEmpleados();
     this.obtenerClientes();
@@ -36,24 +38,43 @@ export class ListarClientesComponent implements OnInit{
 
   private obtenerClientes(){
     this.servicioCliente.obetenerTodos().subscribe(datos=>{
-      if(this.soloPendientes){
-        for(let dato of datos){
-          if(dato.pendiente==true){
-            this.clientes=this.clientes.concat(dato);
-          }
-        }
-      }
-      else if(this.soloNOPendientes){
-        for(let dato of datos){
-          if(dato.pendiente==false){
-            this.clientes=this.clientes.concat(dato);
-          }
-        }
-      }
-      else{
-        this.clientes=datos;
-      }
+      this.filtroPendientes(datos);
     });
+  }
+
+  public filtroPendientes(datos: Cliente[]){
+    var datosAux: Cliente[] = [];
+    if(this.soloPendientes){
+      for(let dato of datos){
+        if(dato.pendiente==true){
+          datosAux=datosAux.concat(dato);
+        }
+      }
+    }
+    else if(this.soloNOPendientes){
+      for(let dato of datos){
+        if(dato.pendiente==false){
+          datosAux=datosAux.concat(dato);
+        }
+      }
+    }
+    else{
+      datosAux=datos;
+    }
+    this.filtroBuscado(datosAux);
+  }
+
+  public filtroBuscado(datos: Cliente[]){
+    if(this.buscado != undefined && this.buscado != ""){
+      for(let dato of datos){
+        if(dato.nombre.toLocaleUpperCase().includes(this.buscado.toLocaleUpperCase())){
+          this.clientes=this.clientes.concat(dato);
+        }
+      }
+    }
+    else{
+      this.clientes=datos;
+    }
   }
 
   public objToString(isCliente: boolean, isPendiente:boolean){
@@ -146,6 +167,23 @@ export class ListarClientesComponent implements OnInit{
   public soloNOPendientesFunc(){
     this.soloNOPendientes!=this.soloNOPendientes;
     this.soloPendientes=false;
+    this.ngOnInit();
+  }
+
+  public buscar(x: string){
+    this.buscado=x;
+    this.ngOnInit();
+  }
+
+  public limpiarFiltros(){
+    this.soloPendientes = false;
+    this.soloNOPendientes = false;
+    this.buscado = "";
+    this.ngOnInit();
+  }
+
+  public limpiar(){
+    this.buscado = "";
     this.ngOnInit();
   }
 }
