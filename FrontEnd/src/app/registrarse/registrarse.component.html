@@ -8,6 +8,16 @@
           <h2>Registrarse</h2>
           <mat-form-field>
             <mat-label>
+            Apellido
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevoCliente.apellido"
+            matInput
+            name="nuevoCliente_apellido">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>
             Nombre
             </mat-label>
             <input

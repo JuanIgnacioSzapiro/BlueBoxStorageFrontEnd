@@ -11,7 +11,7 @@ import { EmpleadoService } from '../empleado/empleado.service';
   styleUrls: ['./listar-clientes.component.css', '../app.component.css']
 })
 export class ListarClientesComponent implements OnInit{
-  clientes: Cliente[];
+  clientes: Cliente[] = [];
   editable: Cliente;
   empleados: Empleado[];
   editarVisible:boolean;
@@ -30,8 +30,9 @@ export class ListarClientesComponent implements OnInit{
   }
 
   private obtenerClientes(){
-    this.servicioCliente.obetenerTodos().subscribe(dato=>
-      {this.clientes=dato;});
+    this.servicioCliente.obetenerTodos().subscribe(datos=>{
+      this.clientes=datos;
+    });
   }
 
   public objToString(isCliente: boolean, isPendiente:boolean){
@@ -45,6 +46,8 @@ export class ListarClientesComponent implements OnInit{
   public mostrarEditarVisible(x: Cliente){
     if(this.editarVisible==false){
       this.editable=JSON.parse(JSON.stringify(x));
+      this.editable.apellido = this.editable.nombre.charAt(0).toLocaleUpperCase()+this.editable.nombre.slice(1, this.editable.nombre.indexOf(",")).toLocaleLowerCase();
+      this.editable.nombre =this.editable.nombre.slice(this.editable.nombre.indexOf(",")+2)
     }
     this.editarVisible=!this.editarVisible
   }
@@ -82,6 +85,9 @@ export class ListarClientesComponent implements OnInit{
     else if(x.nombre=="" || x.nombre==null){
       alert("El campo 'Nombre' está incompleto");
     }
+    else if(x.apellido=="" || x.apellido==null){
+      alert("El campo 'Apellido' está incompleto");
+    }
     else if(x.nombreUsuario=="" || x.nombreUsuario==null){
       alert("El campo 'Nombre de usuario' está incompleto");
     }
@@ -89,6 +95,7 @@ export class ListarClientesComponent implements OnInit{
       alert("El campo 'Teléfono' está incompleto");
     }
     else {
+      x.nombre=x.apellido.toUpperCase()+", "+x.nombre
       this.servicioCliente.modificar(x).subscribe(dato=>{
         this.ngOnInit();
       },error=>console.log(error));

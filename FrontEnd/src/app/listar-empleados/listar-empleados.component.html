@@ -8,6 +8,16 @@
       <mat-card class="formCard editable">
         <mat-card-content class="card">
           <h2>Nuevo empleado</h2>
+          <mat-form-field>
+            <mat-label>
+            Apellido
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="nuevo.apellido"
+            matInput
+            name="nuevo_apellido">
+          </mat-form-field>
           <mat-form-field >
             <mat-label>
               Nombre
@@ -93,6 +103,16 @@
       <mat-card class="formCard editable">
         <mat-card-content class="card">
           <h2>Editar empleado con ID {{editable.idUsuario}}</h2>
+          <mat-form-field>
+            <mat-label>
+            Apellido
+            </mat-label>
+            <input
+            type="text"
+            [(ngModel)]="editable.apellido"
+            matInput
+            name="editable_apellido">
+          </mat-form-field>
           <mat-form-field >
             <mat-label>
               Nombre

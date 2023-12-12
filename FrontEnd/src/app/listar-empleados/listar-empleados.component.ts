@@ -87,6 +87,9 @@ export class ListarEmpleadosComponent implements OnInit{
     else if(this.nuevo.especialidad=="" || this.nuevo.especialidad==null){
       alert("El campo 'Especialidad' está incompleto");
     }
+    else if(this.nuevo.apellido=="" || this.nuevo.apellido==null){
+      alert("El campo 'Apellido' está incompleto");
+    }
     else if(this.nuevo.nombre=="" || this.nuevo.nombre==null){
       alert("El campo 'Nombre' está incompleto");
     }
@@ -97,6 +100,7 @@ export class ListarEmpleadosComponent implements OnInit{
       alert("El campo 'Teléfono' está incompleto");
     }
     else{
+      this.nuevo.nombre=this.nuevo.apellido.toUpperCase()+", "+this.nuevo.nombre
       this.servicioEmpleado.agregar(this.nuevo).subscribe(dato=>{
         this.ngOnInit();
       },error=>console.log(error));
@@ -106,6 +110,8 @@ export class ListarEmpleadosComponent implements OnInit{
   public mostrarEditarVisible(empleado: Empleado){
     if(this.editarVisible==false){
       this.editable=JSON.parse(JSON.stringify(empleado));
+      this.editable.apellido = this.editable.nombre.charAt(0).toLocaleUpperCase()+this.editable.nombre.slice(1, this.editable.nombre.indexOf(",")).toLocaleLowerCase();
+      this.editable.nombre =this.editable.nombre.slice(this.editable.nombre.indexOf(",")+2)
     }
     this.editarVisible=!this.editarVisible
   }
@@ -127,6 +133,9 @@ export class ListarEmpleadosComponent implements OnInit{
       else if(this.editable.especialidad=="" || this.editable.especialidad==null){
         alert("El campo 'Especialidad' está incompleto");
       }
+      else if(x.apellido=="" || x.apellido==null){
+        alert("El campo 'Apellido' está incompleto");
+      }
       else if(this.editable.nombre=="" || this.editable.nombre==null){
         alert("El campo 'Nombre' está incompleto");
       }
@@ -137,6 +146,7 @@ export class ListarEmpleadosComponent implements OnInit{
         alert("El campo 'Teléfono' está incompleto");
       }
       else{
+        x.nombre=x.apellido.toUpperCase()+", "+x.nombre
         this.servicioEmpleado.modificar(x).subscribe(dato=>{
           this.ngOnInit();
         },error=>console.log(error));

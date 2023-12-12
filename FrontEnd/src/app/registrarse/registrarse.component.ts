@@ -73,6 +73,9 @@ export class RegistrarseComponent implements OnInit{
     else if(this.nuevoCliente.mail=="" || this.nuevoCliente.mail==null){
       alert("El campo 'Especialidad' está incompleto");
     }
+    else if(this.nuevoCliente.apellido=="" || this.nuevoCliente.apellido==null){
+      alert("El campo 'Apellido' está incompleto");
+    }
     else if(this.nuevoCliente.nombre=="" || this.nuevoCliente.nombre==null){
       alert("El campo 'Nombre' está incompleto");
     }
@@ -83,6 +86,7 @@ export class RegistrarseComponent implements OnInit{
       alert("El campo 'Teléfono' está incompleto");
     }
     else {
+      this.nuevoCliente.nombre=this.nuevoCliente.apellido.toUpperCase()+", "+this.nuevoCliente.nombre
       alert("Usuario registrado correctamente");
       this.servicioCliente.agregar(this.nuevoCliente).subscribe(dato=>{
         this.volver();

@@ -8,6 +8,16 @@
             <h2>Editar cliente con ID {{editable.idUsuario}}</h2>
             <mat-form-field>
               <mat-label>
+              Apellido
+              </mat-label>
+              <input
+              type="text"
+              [(ngModel)]="editable.apellido"
+              matInput
+              name="editable_apellido">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>
               Nombre
               </mat-label>
               <input

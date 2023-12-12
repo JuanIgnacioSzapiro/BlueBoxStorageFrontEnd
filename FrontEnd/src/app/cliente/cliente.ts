@@ -1,5 +1,6 @@
 export class Cliente {
   idUsuario!:number;
+  apellido:string
   nombre!:string;
   direccion!:string;
   telefono!:string;
