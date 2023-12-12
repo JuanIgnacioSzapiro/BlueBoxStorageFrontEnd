@@ -59,6 +59,7 @@ export class SucursalZonaDepositoComponent implements OnInit{
           for(let empleadoDeposito of this.empleadoDepositos){
             if(empleadoDeposito.idDeposito == deposito.idDeposito){
               deposito.asignado=true;
+              empleadoDeposito.idSucursal = s.idSucursal;
             }
           }
         }
@@ -68,17 +69,49 @@ export class SucursalZonaDepositoComponent implements OnInit{
 
   public agregarOsacar(deposito: Deposito){
     if(deposito.asignado){
-      this.agregar(deposito.idDeposito);
+      this.preagregado(deposito);
     }
     else{
       this.sacar(deposito.idDeposito);
     }
   }
 
-  public agregar(id_deposito: number){
+  public preagregado(depo: Deposito){
     var empleadoDeposito = new EmpleadoDeposito;
-    empleadoDeposito.idDeposito=id_deposito;
+
+    var pertenece:boolean = true;
+
+    empleadoDeposito.idDeposito=depo.idDeposito;
     empleadoDeposito.idUsuario=this.idEmpleado;
+
+    if(this.empleadoDepositos.length != 0){
+      for(let sucursal of this.sucursales){
+        for(let zona of sucursal.zonas){
+          for(let deposito of zona.depositos){
+            if(depo.idDeposito == deposito.idDeposito){
+              for(let emplDep of this.empleadoDepositos){
+                if(sucursal.idSucursal != emplDep.idSucursal && pertenece != false){
+                  alert("Todos los depósitos asignados al empleado: "+this.idEmpleado+" deben pertenecer a la misma sucursal ("+emplDep.idSucursal+")");
+                  pertenece = false;
+                }
+              }
+            }
+          }
+        }
+      }
+      if(!pertenece){
+        this.ngOnInit();
+      }
+      else{
+        this.agregar(empleadoDeposito);
+      }
+    }
+    else{
+      this.agregar(empleadoDeposito);
+    }
+  }
+
+  public agregar(empleadoDeposito: EmpleadoDeposito){
     this.empleadoDepositoService.agregar(empleadoDeposito).subscribe(x=>{
       this.ngOnInit();
     });

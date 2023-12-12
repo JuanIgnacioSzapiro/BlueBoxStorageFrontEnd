@@ -1,0 +1,6 @@
+el ver mas de cliente no redirecciona a nada
+agregar filtros en listar empleados para solo admin y solo no admin
+agregar filtros en listar clientes para solo pendientes y solo no pendientes
+agregar búsqueda x nombre en listar empleados
+agregar búsqueda x nombre en listar clientes
+
