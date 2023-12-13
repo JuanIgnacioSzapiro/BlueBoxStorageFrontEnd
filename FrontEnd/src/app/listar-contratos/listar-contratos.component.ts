@@ -11,8 +11,10 @@ import { ContratoService } from '../contrato/contrato.service';
   styleUrls: ['./listar-contratos.component.css', '../app.component.css']
 })
 export class ListarContratosComponent {
-  contratos: Contrato[] = [];
+  contratos: Contrato[];
   depositos: Deposito[];
+
+  totalidadContratos: Contrato[];
 
   editable: Contrato;
   nuevo = new Contrato;
@@ -35,6 +37,11 @@ export class ListarContratosComponent {
     this.agregarVisible = false;
     this.editarVisible = false;
 
+    this.contratos=[];
+    this.depositos=[];
+
+    this.obtenerTotalidad();
+
     if(this.obtenerRol() == "cliente"){
       this.cliente= true;
       this.obtenerDeUsuario();
@@ -43,8 +50,6 @@ export class ListarContratosComponent {
       this.cliente= false;
       this.obtenerTodos();
     }
-
-    this.obtenerDepositos();
   }
 
   public obtenerDeUsuario(){
@@ -92,30 +97,54 @@ export class ListarContratosComponent {
     }
   }
 
-  public obtenerDepositos(){
-    this.depositoService.obetenerTodos().subscribe(losDepositos=>{
-      this.depositos=losDepositos;
-    });
+  public obtenerTotalidad(){
+    this.servicio.obetenerTodos().subscribe(datos=>{
+      this.totalidadContratos=datos;
+      this.obtenerDepositos();
+    })
   }
 
-  public checkearAsignacion(){
-    var contador = 0;
-    if(this.depositos.length != 0){
-      for(let deposito of this.depositos){
-        if(this.contratos == undefined || this.contratos.length == 0){
-          return deposito.idDeposito;
-        }
-        else{
-          for(contador=0; contador < this.contratos.length; contador++){
-            if(this.contratos[contador].idDeposito == deposito.idDeposito){
-              break;
-            }
-            else if(contador == this.contratos.length-1){
-              return deposito.idDeposito;
-            }
+  public obtenerDepositos(){
+    this.depositoService.obetenerTodos().subscribe(losDepositos=>{
+      for(let elDepo of losDepositos){
+        for(let total of this.totalidadContratos){
+          if(elDepo.idDeposito == total.idDeposito){
+            elDepo.asignado=true;
+            break;
           }
         }
+        if(elDepo.asignado != true){
+          elDepo.asignado=false;
+        }
       }
+      this.depositos=losDepositos;
+      })
+    }
+
+  public checkearAsignacion(){
+    // var contador = 0;
+    console.log(this.depositos);
+
+    if(this.depositos != undefined && this.depositos.length != 0){
+      for(let deposito of this.depositos){
+        if(deposito.asignado != true){
+          return deposito.idDeposito
+        }
+      }
+      //   if(this.totalidadContratos == undefined || this.totalidadContratos.length == 0){
+      //     return deposito.idDeposito;
+      //   }
+      //   else{
+      //     for(contador=0; contador < this.totalidadContratos.length; contador++){
+      //       if(this.totalidadContratos[contador].idDeposito == deposito.idDeposito){
+      //         break;
+      //       }
+      //       else if(contador == this.totalidadContratos.length-1){
+      //         return deposito.idDeposito;
+      //       }
+      //     }
+      //   }
+      // }
     }
     return -1;
   }

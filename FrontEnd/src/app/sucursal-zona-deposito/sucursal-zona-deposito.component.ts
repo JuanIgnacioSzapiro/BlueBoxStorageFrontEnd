@@ -120,7 +120,7 @@ export class SucursalZonaDepositoComponent implements OnInit{
   public sacar(id_deposito: number){
     this.empleadoDepositos.forEach(empleadoDeposito=>{
       if(empleadoDeposito.idDeposito == id_deposito && empleadoDeposito.idUsuario == this.idEmpleado){
-        this.empleadoDepositoService.eliminar(empleadoDeposito.id_empleado_deposito).subscribe(x=>{
+        this.empleadoDepositoService.eliminar(empleadoDeposito.idEmpleadoDeposito).subscribe(x=>{
           this.ngOnInit();
         });
       }
