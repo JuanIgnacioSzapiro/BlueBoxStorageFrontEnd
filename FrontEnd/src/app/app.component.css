@@ -95,7 +95,7 @@ a[href] {
   display: grid;
   flex-wrap: center;
 
-  position: fixed;
+  position: absolute;
   top: 5%;
   left: 40%;
 
